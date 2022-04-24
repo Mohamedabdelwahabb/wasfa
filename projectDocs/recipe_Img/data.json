@@ -1,0 +1,43 @@
+[
+  {
+    "id": "VAY7qMEkwP0bNAVm9Cxn",
+    "tags": "breakfast",
+    "preptime": "7min",
+    "name": "Breakfast eggs Asian style (low salt no carbs)",
+    "cooktime": "8",
+    "description": "Spice up your breakfast with these deliciously fragrant eggs Asian style. No added salt, but plenty of fresh ingredients like ginger, chilli and garlic for flavour and vitamins.",
+    "servings": 2,
+    "Instructions": [
+      "Finely chop the spring onions. Dice the tomato. Finely chop the ginger. Finely slice the garlic. Finely slice the red chilli.",
+      "Heat a drizzle of lime or lemon infused olive oil in a frying pan on medium-high heat. Add the ginger, garlic and half of the chilli and cook until fragrant, about 1 minute.",
+      "Add to tomatoes and spinach and cook for another 3-4 minutes until the tomatoes have softened.",
+      "Push the vegetables to one side, and fry the two eggs.",
+      "Arrange on plate and sprinkle no salt chilli seasoning (S&B seven spice chilli) over the eggs and the remaining chilli slices. Serve and enjoy!"
+    ],
+    "img": {
+      "_firestore": {
+        "projectId": "recipe-2b3f2"
+      },
+      "_path": {
+        "segments": [
+          "gs:",
+          "recipe-2b3f2.appspot.com",
+          "recipePhoto",
+          "eggAsian"
+        ]
+      },
+      "_converter": {}
+    },
+    "Ingredients": [
+      "2 eggs",
+      "2 spring onions",
+      "1 tomato",
+      "2 cups baby spinach leaves",
+      "1 knob ginger",
+      "2 garlic cloves",
+      "1 red chilli",
+      "chilli seasoning",
+      "drizzle olive oil lime"
+    ]
+  }
+]
