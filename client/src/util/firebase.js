@@ -1,48 +1,46 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child, remove } from "firebase/database";
-// import { v4 as uuidv4 } from "uuid";
-
+import { deleteDoc, doc, getFirestore, updateDoc } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyBZSU5WE_mmHjoiuv0_J-vZxzsGZZ1h10w",
-  authDomain: "recipe-2b3f2.firebaseapp.com",
-  databaseURL:
-    "https://recipe-2b3f2-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "recipe-2b3f2",
-  storageBucket: "recipe-2b3f2.appspot.com",
-  messagingSenderId: "852754771641",
-  appId: "1:852754771641:web:c4cf039f1fe08c4885f568",
+  apiKey: "AIzaSyDDK3fp_nfWGDZ4XbOhIqnjriLFWOmiDkY",
+
+  authDomain: "recipesreactjs.firebaseapp.com",
+
+  projectId: "recipesreactjs",
+
+  storageBucket: "recipesreactjs.appspot.com",
+
+  messagingSenderId: "922889327764",
+
+  appId: "1:922889327764:web:54d69cb896800d58fe9081",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// Get a reference to the database service
-export const database = getDatabase(app);
 
-export const writeItem = (item) => {
-  set(ref(database, "users/" + item.id), item);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const recipesColRef = collection(db, "recipes");
+
+const fetchRecipesCol = async () => {
+  const data = await getDocs(recipesColRef);
+  const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  return result;
 };
 
-export const updateItem = (id, item) => {
-  set(ref(database, "users/" + id), item);
+const dltRecipeById = async (id) => {
+  await deleteDoc(doc(db, "favorites", id));
+  return id;
 };
-
-export const readItem = async (itemId) => {
-  const dbRef = ref(database);
-  const snapshot = await get(child(dbRef, `recipes/${itemId}`));
-  if (snapshot.exists()) {
-    return snapshot.val();
-  }
+const updateRecipe = async (id, data) => {
+  const docRef = doc(db, "favorites", id);
+  await updateDoc(docRef, data);
 };
-
-export const removeItem = async (id) => {
-  await remove(ref(database, "recipes/" + id));
-};
-
-export const readAllItems = async () => {
-  const dbRef = ref(database);
-  const snapshot = await get(child(dbRef, `recipes/`));
-  if (snapshot.exists()) {
-    return snapshot.val();
-  }
+export {
+  fetchRecipesCol,
+  recipesColRef,
+  db,
+  dltRecipeById,
+  updateRecipe,
+  storage,
 };

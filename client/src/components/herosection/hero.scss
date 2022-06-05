@@ -1,0 +1,41 @@
+.hero {
+  display: flex;
+  margin: 2em 2em;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      p {
+        font-weight: 500;
+        font-size: 2em;
+        line-height: 1.4;
+        color: #117799;
+      }
+      span {
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        color: #117799;
+      }
+      button {
+        width: 163px;
+        height: 50px;
+        left: 71px;
+        top: 556px;
+        border: none;
+        background: #5cac0e;
+        border-radius: 15px;
+        color: white;
+      }
+    }
+  }
+}
+img {
+  display: flex;
+  width: 293px;
+  height: 292px;
+}

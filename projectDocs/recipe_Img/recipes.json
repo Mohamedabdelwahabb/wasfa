@@ -1,0 +1,598 @@
+{
+  "recipes": [
+    {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": true,
+      "Ingredients": [
+        {
+          "id": 16063,
+          "name": "cow pea",
+          "amount": 1,
+          "unit": "serving"
+        },
+        {
+          "id": 1022053,
+          "name": "rice wine vinegar",
+          "amount": 0.25,
+          "unit": "cup"
+        },
+        {
+          "id": 16150,
+          "name": "smooth peanut butter",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 12195,
+          "name": "almond butter",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 11216,
+          "name": "ginger",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 99223,
+          "name": "chipotle chile",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "id": 16124,
+          "name": "soy sauce",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 19296,
+          "name": "honey",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "id": 4058,
+          "name": "sesame oil",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "id": 4582,
+          "name": "canola oil",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "id": 1102047,
+          "name": "salt and pepper",
+          "amount": 1,
+          "unit": "serving"
+        },
+        {
+          "id": 21052,
+          "name": "salad mix",
+          "amount": 1
+        },
+        {
+          "id": 11119,
+          "name": "napa cabbage",
+          "amount": 0.5,
+          "unit": "head"
+        },
+        {
+          "id": 10111251,
+          "name": "romaine lettuce",
+          "amount": 0.5,
+          "unit": "head"
+        },
+        {
+          "id": 11124,
+          "name": "carrot",
+          "amount": 2,
+          "unit": ""
+        },
+        {
+          "id": 11300,
+          "name": "snow peas",
+          "amount": 0.25,
+          "unit": "pound"
+        },
+        {
+          "id": 11165,
+          "name": "cilantro",
+          "amount": 0.25,
+          "unit": "cup"
+        },
+        {
+          "id": 11291,
+          "name": "green onion",
+          "amount": 0.25,
+          "unit": "cup"
+        },
+        {
+          "id": 99246,
+          "name": "rotisserie chicken",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "id": 16092,
+          "name": "roasted peanuts",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "id": 2064,
+          "name": "mint",
+          "amount": 0.25,
+          "unit": "cup"
+        },
+        {
+          "id": 1014053,
+          "name": "chili oil",
+          "amount": 1,
+          "unit": "serving"
+        },
+        {
+          "id": 9159,
+          "name": "lime",
+          "amount": 1,
+          "unit": "halves"
+        }
+      ],
+      "title": "Chinese Chicken Salad With Chipotle Dressing",
+      "readyInMinutes": 45,
+      "servings": 4,
+      "image": "https://spoonacular.com/recipeImages/638642-800x600.jpg",
+      "summary": "Chinese Chicken Salad With Chipotle Dressing is a gluten free and dairy free recipe with 4 servings. For <b>$2.64 per serving</b>, this recipe <b>covers 36%</b> of your daily requirements of vitamins and minerals.",
+      "dishTypes": "lunch",
+      "diets": [
+        "gluten free",
+        "dairy free"
+      ],
+      "Instructions": [
+        "Whisk together the vinegar, peanut & almond butters, ginger, chipotle pepper puree, soy sauce, honey, sesame oil, and canola oil in a medium bowl. Season with salt and pepper, to taste.",
+        "Combine cabbage, lettuce, carrots, snow peas, cilantro, and green onion in a large bowl.",
+        "Add the dressing and toss to combine.",
+        "Transfer to a serving platter and top with the shredded chicken, chopped peanuts, and mint.",
+        "Drizzle with chili oil, if desired.",
+        "Garnish with lime halves."
+      ]
+    },
+    {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "Ingredients": [
+        {
+          "id": 18371,
+          "name": "baking powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "id": 1001,
+          "name": "butter",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "id": 1123,
+          "name": "egg",
+          "amount": 1
+        },
+        {
+          "id": 1125,
+          "name": "egg yolk",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "id": 20081,
+          "name": "flour",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "id": 9156,
+          "name": "lemon zest",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "id": 1077,
+          "name": "milk",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "id": 2033,
+          "name": "poppy seed",
+          "amount": 2,
+          "unit": "gram"
+        },
+        {
+          "id": 2047,
+          "name": "salt",
+          "amount": 0.25,
+          "unit": "teaspoon"
+        },
+        {
+          "id": 19335,
+          "name": "sugar",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "id": 19335,
+          "name": "sugar",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "id": 2050,
+          "name": "vanilla extract",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "id": 12155,
+          "name": "walnut halves",
+          "amount": 0.5,
+          "unit": "pound"
+        },
+        {
+          "id": 14412,
+          "name": "water",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "id": 18375,
+          "name": "yeast",
+          "amount": 7.087,
+          "unit": "grams"
+        }
+      ],
+      "title": "Layered Poppy Seed Pastries",
+      "readyInMinutes": 45,
+      "servings": 24,
+      "image": "https://spoonacular.com/recipeImages/649361-556x370.jpg",
+      "summary": "Layered Poppy Seed Pastries might be just the hor d'oeuvre you are searching for.",
+      "dishTypes": "dinner",
+      "diets": [
+        "lacto ovo vegetarian"
+      ],
+      "Instructions": [
+        "Mix warm milk, sugar and yeast in small bowl until yeast dissolves. Set aside.Blend flour, baking powder, salt and lemon zest in large bowl of electric mixer.",
+        "Add butter and blend until mixture is crumbly. Beat egg, egg yolk and vanilla in small bowl.",
+        "Add to flour mixture alternately with milk mixture and blend until dough comes together.",
+        "Transfer dough to floured board; divide dough into 4 parts. Knead each part into flat disc, then wrap in plastic wrap and refrigerate 1 hour.Spoon poppy seed filling into pastry bag. Blend sugar and nuts in small bowl. Set aside.",
+        "Roll each disc of dough into thin sheet large enough to fit into a 13- by 9-inch baking dish. Trim each sheet dough to fit dish. (Reserve trimmings for Poppy Seed Strudel, if desired.) Arrange 1 sheet dough in bottom of baking dish.Pipe half filling onto pastry (or can be spread using spoon).",
+        "Spread poppy seed filling evenly over sheet of dough. Cover with second sheet of dough, and sprinkle with 1 cup walnut filling. Arrange sheet of dough on top and repeat with layer of poppy seed filling. Top with remaining sheet of dough. Cover with kitchen towel and let stand 30 minutes.",
+        "Brush top with egg yolk mixture.",
+        "Bake at 350 degrees until golden brown, about 45 minutes. While hot, cut into 24 squares. Cool in pan. (To freeze, wrap each pastry in plastic wrap then foil. Store in resealable plastic bags in freezer.)This recipe yields 24 pastries.Comments: Make the Poppy Seed Pastries in advance and store them in the freezer. At serving time, just defrost them; they will stay crisp and everyone will think they were freshly baked. Make extra pastries to follow the Purim tradition of sharing (shalach manos) and give a basket of these delicious confections as gifts to family and friends."
+      ]
+    },
+    {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "Ingredients": [
+        {
+          "id": 1002047,
+          "name": "coarse salt",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 20081,
+          "name": "flour",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "id": 11215,
+          "name": "garlic",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "id": 11291,
+          "name": "green onion",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "id": 4053,
+          "name": "olive oil",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "id": 2027,
+          "name": "oregano",
+          "amount": 0.5,
+          "unit": "teaspoons"
+        },
+        {
+          "id": 1033,
+          "name": "parmesan cheese",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "id": 19335,
+          "name": "sugar",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "tomatoes",
+          "amount": 1,
+          "unit": "small"
+        },
+        {
+          "id": 14412,
+          "name": "water",
+          "amount": 0.5,
+          "unit": "pint"
+        },
+        {
+          "id": 18375,
+          "name": "yeast",
+          "amount": 2,
+          "unit": "teaspoons"
+        }
+      ],
+      "title": "Focaccia with Tomato, Green Onion and Garlic",
+      "readyInMinutes": 45,
+      "servings": 8,
+      "image": "https://spoonacular.com/recipeImages/643175-556x370.jpg",
+      "summary": "Focaccia with Tomato, Green Onion and Garlic might be just the bread you are searching for. This recipe makes 8 servings with <b>317 calories</b>, <b>8g of protein</b>, and <b>8g of fat</b> each.",
+      "dishTypes": "breakfast",
+      "diets": [],
+      "Instructions": [
+        "Note: You can use a standing mixer with a dough hook to mix the dough, but we made our bread the old-fashioned way, kneading it with our hands.",
+        "Combine the yeast with warm water (this is referred to as proofing the yeast) in a small bowl along with the sugar. Gently stir the mixture to dissolve everything. Allow the yeast to stand for about 3 minutes until it gets a bit foamy.",
+        "Add the flour to a large bowl and make a well in the center of it.In a small bowl, dissolve the salt in a few tablespoons of water, and add it to the flour along with the yeast mixture. Next add the olive oil to the mixture.With your hands and a spatula to scrape down the bowl, mix everything together to form the dough. Punch down and knead the dough, turning it as you go, for at least 10 minutes or until the dough is smooth, soft and pliable.",
+        "Add a bit of flour to the dough as needed. Form the dough into a round ball.",
+        "Add some olive oil to your hands and smooth it over the dough ball to coat it and leave it in the bowl. Cover the bowl with a thick towel and place the bowl in a warm spot to let the dough rise to double its size (about 45 minutes to an hour).Coat a baking sheet (with sides) with olive oil and sprinkle a few tablespoons of cornmeal over the entire pan. Set aside.Once the dough has risen, place it on a floured surface and punch it down 3-4 times. Allow it to stand for a few minutes while you get your toppings ready.Moving back to the dough, roll and stretch it out into an oblong shape that is about 1/2 an inch thick.",
+        "Place the dough on the oiled baking sheet, cover it with plastic wrap and let it stand for about 15 minutes.Preheat your oven to 400 degrees F. After the dough has rested and youre ready to bake it, poke small wells all around the dough using your finger.",
+        "Brush the surface of the dough with olive oil.Evenly sprinkle on the dried oregano, green onion, tomato and garlic.",
+        "Sprinkle with coarse salt, then grated Parmesan cheese.",
+        "Bake on the bottom rack for 20 minutes, checking it as it gets close to the end of the baking time."
+      ]
+    },
+    {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": true,
+      "dairyFree": false,
+      "Ingredients": [
+        {
+          "id": 2004,
+          "name": "bay leaves",
+          "nameClean": "bay leaves",
+          "amount": 2,
+          "unit": ""
+        },
+        {
+          "id": 19334,
+          "name": "brown sugar",
+          "amount": 0.3333333333333333,
+          "unit": "cup"
+        },
+        {
+          "id": 1001,
+          "name": "butter",
+          "amount": 1,
+          "unit": "stick"
+        },
+        {
+          "id": 2003,
+          "name": "dried basil",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "id": 2036,
+          "name": "dried rosemary",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 2042,
+          "name": "dried thyme",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 2018,
+          "name": "fennel seeds",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 14412,
+          "name": "ice water",
+          "amount": 6,
+          "unit": "cups"
+        },
+        {
+          "id": 1082047,
+          "name": "kosher salt",
+          "amount": 6,
+          "unit": "servings"
+        },
+        {
+          "id": 1002030,
+          "name": "pepper",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 14412,
+          "name": "water",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "id": 5006,
+          "name": "whole chicken",
+          "amount": 1.361,
+          "unit": "kg"
+        }
+      ],
+      "title": "Herb Roasted Chicken",
+      "readyInMinutes": 240,
+      "servings": 6,
+      "image": "https://spoonacular.com/recipeImages/646673-556x370.jpg",
+      "summary": "Herb Roasted Chicken might be just the main course you are searching for. This recipe makes 6 servings with <b>425 calories</b>, <b>21g of protein</b>, and <b>32g of fat</b> each.",
+      "cuisines": [],
+      "dishTypes": [
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
+      ],
+      "diets": [
+        "gluten free"
+      ],
+      "Instructions": [
+        "For the brine, combine the water, salt, sugar, half of the dried herbs and bay leaves into a large saucepan.  Bring the mixture to a boil, stirring to dissolve the salt and sugar.  Reduce to heat to low and simmer for 10 min so the flavors of the herbs can be drawn out.",
+        "Pour the brine into a deep set large bowl and cool it down with your ice water.  Set aside.Clean the chicken by rinsing out the cavity and outer skin and place on a clean surface.  Be sure not to contaminate any vegetables or other ingredients, because no one is a fan of salmonella!",
+        "Place the chicken in the brine,  make sure it is completely immersed in the brine.  Cover and allow to marinate for at least an hour and up to 6 hours.Preheat the oven to 375F.",
+        "Remove the chicken from the brine and place on a clean surface.  Pat the chicken dry with a paper towel as shown.  Separate the skin from the flesh, you can do this by carefully inserting your fingers underneath the skin and gently pull up to create a space or pocket.  Take the butter and rub it underneath the skin and flesh  this will make your chicken moist and tender while accentuating the flavor of the herbs in the meat.  Coat the skin with te remaining herbs and place in a roasting pan, if more herbs are needed just add more.",
+        "Bake the chicken for about 1 hour and 10 minutes, basting the chicken half way through and again during the last 10 minutes.  To test the doneness of your chicken, insert a meat thermometer into the thickest part of the breast, it should read 165F.  If you do not own a thermometer, cut into the chicken and if it releases pink juices it is undercooked.  Your chicken is done when the juices are a clear yellow.",
+        "Transfer the chicken to a carving board and allow it to rest for 10-20 minutes.  This allows the juices to settle into the meat so it does not end up running out all over the board.  To serve, begin carving the legs it is easiest to cut at the joints.",
+        "Remove the wings and then the legs and thighs the same way.  To carve each breast, start at the breabone and cut downward and parallel to the rib cage.  Then make a deep horizontal cut right above the thigh and wing joints.  You can choose to serve the breasts whole or cut them into thin slices."
+      ]
+    },
+    {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "dairyFree": true,
+      "Ingredients": [
+        {
+          "id": 2064,
+          "name": "fresh mint",
+          "amount": 6,
+          "unit": "sprigs"
+        },
+        {
+          "id": 90480,
+          "name": "simple syrup",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "id": 10014412,
+          "name": "ice",
+          "amount": 1,
+          "unit": "serving"
+        },
+        {
+          "id": 10014037,
+          "name": "bourbon",
+          "amount": 28.35,
+          "unit": "g"
+        }
+      ],
+      "title": "Classic Mint Julep",
+      "readyInMinutes": 45,
+      "servings": 1,
+      "image": "https://spoonacular.com/recipeImages/639618-556x370.jpg",
+      "summary": "If you want to add more <b>dairy free, lacto ovo vegetarian, and vegan</b> recipes to your collection, Classic Mint Julep might be a recipe you should try.",
+      "cuisines": [],
+      "dishTypes": [],
+      "diets": [
+        "dairy free",
+        "lacto ovo vegetarian",
+        "vegan"
+      ],
+      "Instructions": [
+        "In a tall glass, add the mint and simple syrup. With the handle of a spoon, crush and mash the leaves to extract the flavors. Fill the glass with the crushed ice and pour in the bourbon. Using a tea spoon, jiggle the contents to mix and chill.",
+        "Strain into a julep cup filled with crushed ice.",
+        "Garnish with fresh mint sprigs."
+      ]
+    },
+    {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": true,
+      "healthScore": 15,
+      "Ingredients": [
+        {
+          "id": 10036,
+          "name": "bone-in pork chops",
+          "amount": 4,
+          "unit": ""
+        },
+        {
+          "id": 1002046,
+          "name": "dijon mustard",
+          "amount": 59.147,
+          "unit": "ml"
+        },
+        {
+          "id": 11215,
+          "name": "garlic",
+          "amount": 2,
+          "unit": "cloves"
+        },
+        {
+          "id": 1002030,
+          "name": "ground pepper",
+          "amount": 3,
+          "unit": "teaspoons"
+        },
+        {
+          "id": 19296,
+          "name": "honey",
+          "amount": 118.294,
+          "unit": "ml"
+        },
+        {
+          "id": 9152,
+          "name": "lemon juice",
+          "amount": 59.147,
+          "unit": "ml"
+        },
+        {
+          "id": 16124,
+          "name": "soy sauce",
+          "amount": 59.147,
+          "unit": "ml"
+        }
+      ],
+      "id": 662535,
+      "title": "Sweet Mustard BBQ Pork Chops",
+      "readyInMinutes": 45,
+      "servings": 4,
+      "image": "https://spoonacular.com/recipeImages/662535-556x370.jpg",
+      "summary": "Sweet Mustard BBQ Pork Chops might be just the <b>American</b> recipe you are searching for. This recipe makes 4 servings with <b>445 calories</b>, <b>38g of protein</b>, and <b>16g of fat</b> each.",
+      "dishTypes": [
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
+      ],
+      "diets": [
+        "gluten free",
+        "dairy free"
+      ],
+      "Instructions": [
+        "Combine honey, Dijon mustard, lemon juice, soy sauce, and garlic in a bowl. Stir until sugar dissolves.",
+        "Place pork chops in large resealable plastic container or bag.",
+        "Pour marinade over pork chops; seal bag/container. Refrigerate for at least 4 hours (preferably overnight), shaking container or turning bag occasionally.Prepare barbecue (medium-high heat).",
+        "Sprinkle pork chops with fresh cracked pepper.Grill pork chops until instant-read thermometer inserted into center of chops registers 145 F to 150 F, about 5-7 minutes per side, brushing with leftover marinade and moving chops to cooler part of rack if burning.",
+        "Transfer chops to platter; cover with foil, and let stand 5 minutes."
+      ]
+    }
+  ]
+}
