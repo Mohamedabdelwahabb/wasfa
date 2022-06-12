@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-
-import classes from "./navbar.scss";
+import classes from "./navbar.css";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Button } from "@mui/material";

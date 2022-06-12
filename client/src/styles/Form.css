@@ -18,11 +18,11 @@
 }
 
 #add {
-  background-color: rgb(243,170,135);
+  background-color: rgb(243, 170, 135);
 }
 
 #remove {
-  background-color: rgb(230,188,86);
+  background-color: rgb(230, 188, 86);
 }
 
 .ingredient-btn:hover {
@@ -37,7 +37,7 @@
 }
 
 .recipe-form .recipe-submit {
-  background-color: rgb(243,170,135);
+  background-color: rgb(243, 170, 135);
   border: 0;
   color: #fff;
   font-weight: bold;
@@ -49,4 +49,3 @@
 .recipe-form .recipe-submit:hover {
   border: 1px solid #777;
 }
-

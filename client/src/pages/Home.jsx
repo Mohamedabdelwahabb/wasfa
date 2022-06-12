@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../components/herosection/Hero";
 import RecipeCard from "../components/card/Card";
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import Search from "../components/search/Search";
-import FilterButtons from "../components/filter/Filter";
+import FilterCategory from "../components/filter/FilterCategory";
 import debounce from "lodash.debounce";
 import { useCollection } from "../hooks/useCollection";
 import { Loading } from "../components/loading/Loading";
+import Suggestion from "../components/suggestion/Suggestion";
+import { RatingComp } from "../components/rating/Rating";
 
 const Home = () => {
   const [filterRecipes, setfilterRecipes] = useState([]);
-  const [type, setType] = useState("All");
+  const [type, setType] = useState("all");
   const [query, setQuery] = useState("");
-  const [searchTerm] = useState(["title", "dishTypes"]);
+  const [searchTerm] = useState(["title", "category"]);
 
   const [recipes, loading] = useCollection("recipes");
-
+  const changeFilter = (newFilter) => {
+    setType(newFilter);
+  };
   useEffect(() => {
     const filterDishTypes = () => {
       const filteredRecipes = recipes.filter((recipe) => {
-        return recipe.dishTypes === type;
+        switch (type) {
+          case "all":
+            return true;
+          case "breakfast":
+          case "lunch":
+          case "dinner":
+          case "snacks":
+          case "appetizers":
+          case "sweets":
+          case "holiday":
+          case "soups":
+            return recipe.category === type;
+          default:
+            return true;
+        }
       });
 
       setfilterRecipes(filteredRecipes);
@@ -49,18 +67,28 @@ const Home = () => {
   return (
     <Container>
       <Hero />
+      <Suggestion />
       <Search onChange={debouncedOnChange} />
-      <FilterButtons setType={setType} setfilterRecipes={setfilterRecipes} />
+      <FilterCategory
+        setType={setType}
+        setfilterRecipes={setfilterRecipes}
+        type={type}
+        changeFilter={changeFilter}
+      />
       {loading && <Loading />}
-      <Grid sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
         {filteredItems.map((recipe) => {
           return (
-            <RecipeCard
-              title={recipe.title}
-              image={recipe.image}
-              id={recipe.id}
-              key={recipe.id}
-            />
+            <Box key={recipe.id} sx={{ position: "relative" }}>
+              <RecipeCard
+                title={recipe.title}
+                image={recipe.image}
+                id={recipe.id}
+                rating={recipe.rating}
+                servings={recipe.servings}
+              />
+              <RatingComp rating={recipe.rating} id={recipe.id} />
+            </Box>
           );
         })}
       </Grid>

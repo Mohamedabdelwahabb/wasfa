@@ -1,59 +1,53 @@
-import { NavLink } from "react-router-dom";
-import Rating from "@mui/material/Rating";
-import { useState } from "react";
-import "./card.scss";
-
+import { Checkbox } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Favorite from "@mui/icons-material/Favorite";
+/*************************/
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../util/firebase";
-import { Button } from "@mui/material";
+import { db } from "../../util/firebase.config";
+import { NavLink } from "react-router-dom";
 
-const RecipeCard = ({ title, image, id }) => {
-  const [rating, setRating] = useState(3);
-
-  const [buttonText, setButtonText] = useState("save"); //same as
-
-  const ratingHandler = (e, newRating) => {
-    setRating(newRating);
-  };
-
+export default function RecipeCard({ title, image, id, rating }) {
   const docData = {
     title: title,
     image: image,
+    rating: rating,
   };
   function handleFav(id) {
     setDoc(doc(db, "favorites", id), docData);
-    alert("you saved recipe");
   }
-
   return (
-    <section className="card">
-      <div className="card__container">
-        <article>
-          <NavLink to={`/recipe/${id}`}>
-            <img className="rcard__visual" src={image} alt={title} />
-            <h3 className="card__title">{title} </h3>
-          </NavLink>
-        </article>
-        <article className="actionBtns">
-          <Button
-            className="delBtn"
-            onClick={() => {
-              handleFav(id);
-              setButtonText("delet");
-            }}
+    <Card sx={{ maxWidth: 345 }}>
+      <NavLink to={`/recipe/${id}`}>
+        <CardMedia component="img" height="194" image={image} alt={title} />
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "rgb(92, 172, 14)" }} aria-label="recipe">
+              W
+            </Avatar>
+          }
+          title={title}
+        />
+      </NavLink>
+      <CardContent varient="body2">
+        <CardActions>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={() => handleFav(id)}
           >
-            {" "}
-            {buttonText}
-          </Button>
-
-          <Rating
-            name="simple-controlled"
-            value={rating}
-            onChange={ratingHandler}
-          />
-        </article>
-      </div>
-    </section>
+            <Checkbox
+              icon={<FavoriteBorderIcon />}
+              checkedIcon={<Favorite sx={{ color: "red" }} />}
+            />
+          </IconButton>
+        </CardActions>
+      </CardContent>
+    </Card>
   );
-};
-export default RecipeCard;
+}

@@ -1,10 +1,7 @@
 {
   "recipes": [
     {
-      "vegetarian": false,
-      "vegan": false,
-      "glutenFree": true,
-      "Ingredients": [
+      "ingredients": [
         {
           "id": 16063,
           "name": "cow pea",
@@ -144,16 +141,12 @@
         }
       ],
       "title": "Chinese Chicken Salad With Chipotle Dressing",
-      "readyInMinutes": 45,
+      "cookTime": 45,
       "servings": 4,
       "image": "https://spoonacular.com/recipeImages/638642-800x600.jpg",
-      "summary": "Chinese Chicken Salad With Chipotle Dressing is a gluten free and dairy free recipe with 4 servings. For <b>$2.64 per serving</b>, this recipe <b>covers 36%</b> of your daily requirements of vitamins and minerals.",
-      "dishTypes": "lunch",
-      "diets": [
-        "gluten free",
-        "dairy free"
-      ],
-      "Instructions": [
+      "description": "Chinese Chicken Salad With Chipotle Dressing is a gluten free and dairy free recipe with 4 servings. For $2.64 per serving, this recipe covers 36% of your daily requirements of vitamins and minerals.",
+      "categories": "lunch",
+      "instructions": [
         "Whisk together the vinegar, peanut & almond butters, ginger, chipotle pepper puree, soy sauce, honey, sesame oil, and canola oil in a medium bowl. Season with salt and pepper, to taste.",
         "Combine cabbage, lettuce, carrots, snow peas, cilantro, and green onion in a large bowl.",
         "Add the dressing and toss to combine.",
@@ -163,10 +156,7 @@
       ]
     },
     {
-      "vegetarian": true,
-      "vegan": false,
-      "glutenFree": false,
-      "Ingredients": [
+      "ingredients": [
         {
           "id": 18371,
           "name": "baking powder",
@@ -258,15 +248,12 @@
         }
       ],
       "title": "Layered Poppy Seed Pastries",
-      "readyInMinutes": 45,
+      "cookTime": 45,
       "servings": 24,
       "image": "https://spoonacular.com/recipeImages/649361-556x370.jpg",
-      "summary": "Layered Poppy Seed Pastries might be just the hor d'oeuvre you are searching for.",
-      "dishTypes": "dinner",
-      "diets": [
-        "lacto ovo vegetarian"
-      ],
-      "Instructions": [
+      "description": "Layered Poppy Seed Pastries might be just the hor d'oeuvre you are searching for.",
+      "category": "dinner",
+      "instructions": [
         "Mix warm milk, sugar and yeast in small bowl until yeast dissolves. Set aside.Blend flour, baking powder, salt and lemon zest in large bowl of electric mixer.",
         "Add butter and blend until mixture is crumbly. Beat egg, egg yolk and vanilla in small bowl.",
         "Add to flour mixture alternately with milk mixture and blend until dough comes together.",
@@ -278,10 +265,7 @@
       ]
     },
     {
-      "vegetarian": false,
-      "vegan": false,
-      "glutenFree": false,
-      "Ingredients": [
+      "ingredients": [
         {
           "id": 1002047,
           "name": "coarse salt",
@@ -349,13 +333,12 @@
         }
       ],
       "title": "Focaccia with Tomato, Green Onion and Garlic",
-      "readyInMinutes": 45,
+      "cookTime": 45,
       "servings": 8,
       "image": "https://spoonacular.com/recipeImages/643175-556x370.jpg",
-      "summary": "Focaccia with Tomato, Green Onion and Garlic might be just the bread you are searching for. This recipe makes 8 servings with <b>317 calories</b>, <b>8g of protein</b>, and <b>8g of fat</b> each.",
-      "dishTypes": "breakfast",
-      "diets": [],
-      "Instructions": [
+      "description": "Focaccia with Tomato, Green Onion and Garlic might be just the bread you are searching for. This recipe makes 8 servings with <b>317 calories</b>, <b>8g of protein</b>, and <b>8g of fat</b> each.",
+      "category": "breakfast",
+      "instructions": [
         "Note: You can use a standing mixer with a dough hook to mix the dough, but we made our bread the old-fashioned way, kneading it with our hands.",
         "Combine the yeast with warm water (this is referred to as proofing the yeast) in a small bowl along with the sugar. Gently stir the mixture to dissolve everything. Allow the yeast to stand for about 3 minutes until it gets a bit foamy.",
         "Add the flour to a large bowl and make a well in the center of it.In a small bowl, dissolve the salt in a few tablespoons of water, and add it to the flour along with the yeast mixture. Next add the olive oil to the mixture.With your hands and a spatula to scrape down the bowl, mix everything together to form the dough. Punch down and knead the dough, turning it as you go, for at least 10 minutes or until the dough is smooth, soft and pliable.",
@@ -368,11 +351,7 @@
       ]
     },
     {
-      "vegetarian": false,
-      "vegan": false,
-      "glutenFree": true,
-      "dairyFree": false,
-      "Ingredients": [
+      "ingredients": [
         {
           "id": 2004,
           "name": "bay leaves",
@@ -448,21 +427,12 @@
         }
       ],
       "title": "Herb Roasted Chicken",
-      "readyInMinutes": 240,
+      "cookTime": 240,
       "servings": 6,
       "image": "https://spoonacular.com/recipeImages/646673-556x370.jpg",
-      "summary": "Herb Roasted Chicken might be just the main course you are searching for. This recipe makes 6 servings with <b>425 calories</b>, <b>21g of protein</b>, and <b>32g of fat</b> each.",
-      "cuisines": [],
-      "dishTypes": [
-        "lunch",
-        "main course",
-        "main dish",
-        "dinner"
-      ],
-      "diets": [
-        "gluten free"
-      ],
-      "Instructions": [
+      "description": "Herb Roasted Chicken might be just the main course you are searching for. This recipe makes 6 servings with <b>425 calories</b>, <b>21g of protein</b>, and <b>32g of fat</b> each.",
+      "category": "lunch",
+      "instructions": [
         "For the brine, combine the water, salt, sugar, half of the dried herbs and bay leaves into a large saucepan.  Bring the mixture to a boil, stirring to dissolve the salt and sugar.  Reduce to heat to low and simmer for 10 min so the flavors of the herbs can be drawn out.",
         "Pour the brine into a deep set large bowl and cool it down with your ice water.  Set aside.Clean the chicken by rinsing out the cavity and outer skin and place on a clean surface.  Be sure not to contaminate any vegetables or other ingredients, because no one is a fan of salmonella!",
         "Place the chicken in the brine,  make sure it is completely immersed in the brine.  Cover and allow to marinate for at least an hour and up to 6 hours.Preheat the oven to 375F.",
@@ -473,11 +443,7 @@
       ]
     },
     {
-      "vegetarian": true,
-      "vegan": true,
-      "glutenFree": false,
-      "dairyFree": true,
-      "Ingredients": [
+      "ingredients": [
         {
           "id": 2064,
           "name": "fresh mint",
@@ -504,94 +470,15 @@
         }
       ],
       "title": "Classic Mint Julep",
-      "readyInMinutes": 45,
+      "cookTime": 45,
       "servings": 1,
       "image": "https://spoonacular.com/recipeImages/639618-556x370.jpg",
-      "summary": "If you want to add more <b>dairy free, lacto ovo vegetarian, and vegan</b> recipes to your collection, Classic Mint Julep might be a recipe you should try.",
-      "cuisines": [],
-      "dishTypes": [],
-      "diets": [
-        "dairy free",
-        "lacto ovo vegetarian",
-        "vegan"
-      ],
-      "Instructions": [
+      "description": "If you want to add more <b>dairy free, lacto ovo vegetarian, and vegan</b> recipes to your collection, Classic Mint Julep might be a recipe you should try.",
+      "category": "",
+      "instructions": [
         "In a tall glass, add the mint and simple syrup. With the handle of a spoon, crush and mash the leaves to extract the flavors. Fill the glass with the crushed ice and pour in the bourbon. Using a tea spoon, jiggle the contents to mix and chill.",
         "Strain into a julep cup filled with crushed ice.",
         "Garnish with fresh mint sprigs."
-      ]
-    },
-    {
-      "vegetarian": false,
-      "vegan": false,
-      "glutenFree": true,
-      "healthScore": 15,
-      "Ingredients": [
-        {
-          "id": 10036,
-          "name": "bone-in pork chops",
-          "amount": 4,
-          "unit": ""
-        },
-        {
-          "id": 1002046,
-          "name": "dijon mustard",
-          "amount": 59.147,
-          "unit": "ml"
-        },
-        {
-          "id": 11215,
-          "name": "garlic",
-          "amount": 2,
-          "unit": "cloves"
-        },
-        {
-          "id": 1002030,
-          "name": "ground pepper",
-          "amount": 3,
-          "unit": "teaspoons"
-        },
-        {
-          "id": 19296,
-          "name": "honey",
-          "amount": 118.294,
-          "unit": "ml"
-        },
-        {
-          "id": 9152,
-          "name": "lemon juice",
-          "amount": 59.147,
-          "unit": "ml"
-        },
-        {
-          "id": 16124,
-          "name": "soy sauce",
-          "amount": 59.147,
-          "unit": "ml"
-        }
-      ],
-      "id": 662535,
-      "title": "Sweet Mustard BBQ Pork Chops",
-      "readyInMinutes": 45,
-      "servings": 4,
-      "image": "https://spoonacular.com/recipeImages/662535-556x370.jpg",
-      "summary": "Sweet Mustard BBQ Pork Chops might be just the <b>American</b> recipe you are searching for. This recipe makes 4 servings with <b>445 calories</b>, <b>38g of protein</b>, and <b>16g of fat</b> each.",
-      "dishTypes": [
-        "lunch",
-        "main course",
-        "main dish",
-        "dinner"
-      ],
-      "diets": [
-        "gluten free",
-        "dairy free"
-      ],
-      "Instructions": [
-        "Combine honey, Dijon mustard, lemon juice, soy sauce, and garlic in a bowl. Stir until sugar dissolves.",
-        "Place pork chops in large resealable plastic container or bag.",
-        "Pour marinade over pork chops; seal bag/container. Refrigerate for at least 4 hours (preferably overnight), shaking container or turning bag occasionally.Prepare barbecue (medium-high heat).",
-        "Sprinkle pork chops with fresh cracked pepper.Grill pork chops until instant-read thermometer inserted into center of chops registers 145 F to 150 F, about 5-7 minutes per side, brushing with leftover marinade and moving chops to cooler part of rack if burning.",
-        "Transfer chops to platter; cover with foil, and let stand 5 minutes."
       ]
     }
   ]

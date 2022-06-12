@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
-import { db } from "../util/firebase";
+import { db } from "../util/firebase.config";
 import { useFirestore } from "../hooks/useFirestore";
 
 // react-bootstrap
@@ -20,8 +20,7 @@ export default function EditRecipe() {
 
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(false);
+
   const [newTitle, setNewTitle] = useState("");
   const [newDesc, setNewDesc] = useState("");
   const [newCookTime, setNewCookTime] = useState("");
@@ -46,9 +45,8 @@ export default function EditRecipe() {
       });
     };
 
-    // eslint-disable-next-line
-
     return () => unsub();
+    // eslint-disable-next-line
   }, [id]);
   console.log(newTitle);
   const categories = [
@@ -123,8 +121,6 @@ export default function EditRecipe() {
 
   return (
     <div className="recipe-form">
-      {error && <p className="error">{error}</p>}
-      {isPending && <p className="loading">Loading...</p>}
       {recipe && (
         <>
           <Form onSubmit={handleEdit}>

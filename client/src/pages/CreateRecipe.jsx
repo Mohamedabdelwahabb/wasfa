@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Timestamp, collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-import { db, storage } from "../util/firebase";
-import "../styles/Form.css";
+import Box from "@mui/material/Box";
+import { db, storage } from "../util/firebase.config";
+import "../styles/form.css";
 import Form from "react-bootstrap/Form";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Container } from "@mui/material";
 
 export default function CreateRecipe() {
   const [formData, setFormData] = useState({
@@ -21,14 +22,14 @@ export default function CreateRecipe() {
     category: "",
   });
   const categories = [
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Snacks",
-    "Appetizers",
-    "Sweets",
-    "Holiday",
-    "Soups",
+    "breakfast",
+    "lunch",
+    "dinner",
+    "snacks",
+    "appetizers",
+    "sweets",
+    "holiday",
+    "soups",
   ];
   const categoryOptions = categories.map((category) => {
     return (
@@ -38,14 +39,15 @@ export default function CreateRecipe() {
     );
   });
   const [progress, setProgress] = useState(0);
-
+  const [imageUrl, setImageUrl] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+  const handleFilesChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
+
   const handleIngredient = (e, i) => {
     e.preventDefault();
     const ingredientsClone = [...formData.ingredients];
@@ -67,11 +69,10 @@ export default function CreateRecipe() {
     const ingredientsClone = [...formData.ingredients];
     console.log(ingredientsClone);
     const newIngredientsClone = ingredientsClone.splice(-1);
-    console.log(newIngredientsClone);
-    console.log(ingredientsClone);
+
     setFormData({
       ...formData,
-      ingredients: ingredientsClone,
+      ingredients: newIngredientsClone,
     });
   };
 
@@ -91,24 +92,21 @@ export default function CreateRecipe() {
       instructions: [...formData.instructions, ""],
     });
   };
-  const handlePublish = () => {
+  const handleSubmit = () => {
     if (
       !formData.title ||
-      !formData.image ||
       !formData.description ||
       !formData.ingredients ||
       !formData.instructions ||
       !formData.cookTime ||
-      !formData.servings
+      !formData.servings ||
+      !formData.category
     ) {
       alert("Please fill all the fields");
       return;
     }
 
-    const storageRef = ref(
-      storage,
-      `/images/${Date.now()}${formData.image.name}`
-    );
+    const storageRef = ref(storage, `/images/${formData.image.name}`);
 
     const uploadImage = uploadBytesResumable(storageRef, formData.image);
 
@@ -132,28 +130,18 @@ export default function CreateRecipe() {
           instructions: [],
           servings: 0,
           cookTime: "",
-          categories: "",
+          category: "",
         });
 
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          const articleRef = collection(db, "favorites");
-          addDoc(articleRef, {
-            title: formData.title,
-            image: url,
-            description: formData.description,
-            ingredients: formData.ingredients,
-            instructions: formData.instructions,
-            cookTime: formData.cookTime,
-            servings: formData.servings,
-            category: formData.category,
-            createdAt: Timestamp.now().toDate(),
-          })
+          const recipeRef = collection(db, "recipes");
+          addDoc(recipeRef, { ...formData, image: url })
             .then(() => {
-              alert("Article added successfully");
+              ("Article added successfully");
               setProgress(0);
             })
             .catch((err) => {
-              alert("Error adding article");
+              console.log("Error adding article");
             });
         });
       }
@@ -161,29 +149,39 @@ export default function CreateRecipe() {
   };
 
   return (
-    <div className="border p-3 mt-3 bg-light" style={{ position: "fixed" }}>
-      <>
-        <h2>Create article</h2>
-        <div className="form-group">
-          <label htmlFor="">Title</label>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            value={formData.title}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        {/* image */}
+    <Container>
+      <h2>Create Recipe</h2>
+
+      <Box className="form-group">
+        <label htmlFor="">Title</label>
+        <input
+          type="text"
+          name="title"
+          className="form-control"
+          value={formData.title}
+          onChange={(e) => handleChange(e)}
+        />
+      </Box>
+      <Box>
         <label htmlFor="">Image</label>
         <input
           type="file"
           name="image"
-          accept="image/*"
           className="form-control"
-          onChange={(e) => handleImageChange(e)}
+          onChange={(e) => handleFilesChange(e)}
         />
-
+      </Box>
+      <Box>
+        {" "}
+        <label htmlFor="">video</label>
+        <input
+          type="file"
+          name="video"
+          className="form-control"
+          onChange={(e) => handleFilesChange(e)}
+        />
+      </Box>
+      <Box>
         {progress === 0 ? null : (
           <div className="progress">
             <div
@@ -194,7 +192,10 @@ export default function CreateRecipe() {
             </div>
           </div>
         )}
-        {/* description */}
+      </Box>
+
+      {/* description */}
+      <Box>
         <label htmlFor="">Description</label>
         <textarea
           name="description"
@@ -202,105 +203,105 @@ export default function CreateRecipe() {
           value={formData.description}
           onChange={(e) => handleChange(e)}
         />
-        <Form.Group>
-          <br />
-          <Form.Label className="form-label">Ingredients</Form.Label>
-          {formData?.ingredients?.map((ingredient, i) => (
-            <Form.Control
-              type="text"
-              key={i}
-              onChange={(e) => handleIngredient(e, i)}
-            />
-          ))}
-          <div id="ingredients-buttons">
-            <button
-              className="ingredient-btn"
-              id="add"
-              onClick={handleIngredientNext}
-            >
-              Add
-            </button>
-            <button
-              className="ingredient-btn"
-              id="remove"
-              onClick={handleRemoveIngredient}
-            >
-              Remove
-            </button>
-          </div>
-          <br />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="form-label">Instructions</Form.Label>
-          {formData?.instructions?.map((step, i) => (
-            <Form.Control
-              type="text"
-              key={i}
-              value={step}
-              onChange={(e) => handeleInstruction(e, i)}
-            />
-          ))}
-          <div id="ingredients-buttons">
-            <button
-              className="ingredient-btn"
-              id="add"
-              onClick={handleInstructionNext}
-            >
-              Add
-            </button>
-            <button
-              className="ingredient-btn"
-              id="remove"
-              onClick={handleRemoveIngredient}
-            >
-              Remove
-            </button>
-          </div>
-        </Form.Group>
-        <Row>
-          <Col>
-            <Form.Label className="form-label">Cook Time</Form.Label>
-            <Form.Control
-              type="text"
-              name="cookTime"
-              value={formData.cookTime}
-              onChange={(e) => handleChange(e)}
-              required
-            />
-          </Col>
+      </Box>
 
-          <Col>
-            <Form.Label className="form-label">Servings</Form.Label>
-            <Form.Control
-              type="number"
-              step="1"
-              min="1"
-              onChange={(e) =>
-                setFormData({ ...formData, servings: e.target.value })
-              }
-              required
-            />
-          </Col>
-        </Row>
-        <Form.Group>
-          <Form.Label className="form-label">Category</Form.Label>
-          <Form.Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
+      <Box>
+        <br />
+        <Form.Label className="form-label">Ingredients</Form.Label>
+        {formData?.ingredients?.map((ingredient, i) => (
+          <Form.Control
+            type="text"
+            key={i}
+            onChange={(e) => handleIngredient(e, i)}
+          />
+        ))}
+        <div id="ingredients-buttons">
+          <button
+            className="ingredient-btn"
+            id="add"
+            onClick={handleIngredientNext}
           >
-            <option>Choose a category</option>
-            {categoryOptions}
-          </Form.Select>
-        </Form.Group>
+            Add
+          </button>
+          <button
+            className="ingredient-btn"
+            id="remove"
+            onClick={handleRemoveIngredient}
+          >
+            Remove
+          </button>
+        </div>
+        <br />
+      </Box>
+      <Form.Group>
+        <Form.Label className="form-label">Instructions</Form.Label>
+        {formData?.instructions?.map((step, i) => (
+          <Form.Control
+            type="text"
+            key={i}
+            value={step}
+            onChange={(e) => handeleInstruction(e, i)}
+          />
+        ))}
+        <div id="ingredients-buttons">
+          <button
+            className="ingredient-btn"
+            id="add"
+            onClick={handleInstructionNext}
+          >
+            Add
+          </button>
+          <button
+            className="ingredient-btn"
+            id="remove"
+            onClick={handleRemoveIngredient}
+          >
+            Remove
+          </button>
+        </div>
+      </Form.Group>
+      <Row>
+        <Col>
+          <Form.Label className="form-label">Cook Time</Form.Label>
+          <Form.Control
+            type="text"
+            name="cookTime"
+            value={formData.cookTime}
+            onChange={(e) => handleChange(e)}
+            required
+          />
+        </Col>
 
-        <button
-          className="form-control btn-primary mt-2"
-          onClick={handlePublish}
+        <Col>
+          <Form.Label className="form-label">Servings</Form.Label>
+          <Form.Control
+            type="number"
+            step="1"
+            min="1"
+            onChange={(e) =>
+              setFormData({ ...formData, servings: e.target.value })
+            }
+            required
+          />
+        </Col>
+      </Row>
+      <Form.Group>
+        <Form.Label className="form-label">Category</Form.Label>
+        <Form.Select
+          onChange={(e) =>
+            setFormData({ ...formData, category: e.target.value })
+          }
         >
-          Publish
-        </button>
-      </>
-    </div>
+          <option>Choose a category</option>
+          {categoryOptions}
+        </Form.Select>
+      </Form.Group>
+
+      <input className="form-control btn-primary mt-2" type="submit" />
+
+      <button className="form-control btn-primary mt-2" onClick={handleSubmit}>
+        Save
+      </button>
+    </Container>
   );
 }

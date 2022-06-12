@@ -1,12 +1,12 @@
-import { collection, onSnapshot } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../util/firebase.config";
-const useCollection = (colName) => {
+
+const useQuery = (q) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, colName), (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const collectionData = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
@@ -24,4 +24,4 @@ const useCollection = (colName) => {
   return [data, loading];
 };
 
-export { useCollection };
+export { useQuery };

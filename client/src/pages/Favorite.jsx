@@ -1,21 +1,26 @@
 import { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
-
-import { dltRecipeById, updateRecipe } from "../util/firebase";
+import AddIcon from "@mui/icons-material/Add";
+import { dltRecipeById } from "../util/firebase.config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import RecipeCard from "../components/card/Card";
 import { useCollection } from "../hooks/useCollection";
 
-const Favorite = ({ image, title, id }) => {
+import { Button, Container, Box } from "@mui/material";
+
+const Favorite = ({ image, title, id, rating }) => {
   const [favorite] = useCollection("favorites");
 
   return (
-    <section>
+    <Container sx={{ display: "flex", flexDirection: "row" }}>
       <NavLink to="/create">
-        <span>New Recipe</span>
+        <Button variant="contained" startIcon={<AddIcon />}>
+          add
+        </Button>
       </NavLink>
-      <div>
+
+      <Box>
         {favorite &&
           favorite?.map(({ title, id, image }) => {
             return (
@@ -36,8 +41,8 @@ const Favorite = ({ image, title, id }) => {
               </Fragment>
             );
           })}
-      </div>
-    </section>
+      </Box>
+    </Container>
   );
 };
 

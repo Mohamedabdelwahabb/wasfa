@@ -3,7 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import "./search.scss";
+
 const Search = ({ onChange }) => {
   return (
     <Paper
@@ -14,6 +14,8 @@ const Search = ({ onChange }) => {
         alignItems: "center",
         width: "100%",
         justifyContent: "center",
+        boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.05)",
+        marginTop: "3em",
       }}
     >
       <IconButton sx={{ p: "10px" }} aria-label="search">

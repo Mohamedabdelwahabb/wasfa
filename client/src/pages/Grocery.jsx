@@ -1,113 +1,110 @@
+import "../styles/grocery.css";
 import {
   addDoc,
   collection,
   doc,
   onSnapshot,
   setDoc,
+  Timestamp,
 } from "firebase/firestore";
-import React, { useReducer } from "react";
-import { useCollection } from "../hooks/useCollection";
-import { db } from "../util/firebase";
+import { useFirestore } from "../hooks/useFirestore";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import Speech from "../components/speech/Speech";
 
-const ShoppingCart = () => {
-  const initialState = {
-    items: [],
-  };
+const ShoppingCart = (props) => {
+  const { addDocument } = useFirestore("ShoppingCart");
+  const [name, setName] = useState("");
 
-  const reducer = (state, action) => {
-    let updatedState;
-    switch (action.type) {
-      // Let users add items to cart
-      case "add":
-        updatedState = {
-          ...state,
-          items: [...state.items, action.payload],
-        };
-        state.input = "";
-
-        return updatedState;
-
-      // Let users delete items they don't need
-      case "delete":
-        let filteredState = {
-          ...state,
-          items: [...state.items].filter((x, ind) => {
-            console.log(x);
-
-            return ind !== action.payload;
-          }),
-        };
-
-        return filteredState;
-      // Let users create input
-      case "input":
-        return {
-          ...state,
-          input: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const [cart, loading] = useCollection("ShoppingCart");
-
-  const { items, input } = state;
-  console.log(items);
-  const handleSubmit = (e) => {
+  const [items, setItems] = useState([]);
+  const add = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "add",
-      payload: {
-        title: state.input,
+    if (!name) {
+      return;
+    }
+    setItems((items) => [
+      ...items,
+      {
         complete: false,
+        name,
       },
-    });
+    ]);
+    setName("");
   };
-  console.log(state);
+
+  const remove = (index) => {
+    setItems((items) => items.filter((_, i) => i !== index));
+  };
   const handleChange = (e) => {
-    dispatch({
-      type: "input",
-      payload: e.target.value,
-    });
+    setItems({ ...items, [e.target.name]: e.target.value });
+  };
+
+  const handleAddButtonClick = () => {
+    const newItem = {
+      name: name,
+      complete: false,
+    };
+
+    const newItems = [...items, newItem];
+
+    setItems(newItems);
+    setName("");
+  };
+
+  const toggleComplete = (index) => {
+    const newItems = [...items];
+
+    newItems[index].complete = !newItems[index].complete;
+
+    setItems(newItems);
   };
 
   return (
-    <div className="container">
-      <h1>Shopping Cart</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} />
-      </form>
-      <div>
-        {state &&
-          items?.map((item, index) => (
-            <div key={index} className="flex">
-              <div>
-                {index + 1}. {item.title}
-              </div>
-              <div>
-                <button
-                  onClick={() => dispatch({ type: "delete", payload: index })}
-                >
-                  x
-                </button>
-              </div>
-              <button
-                onClick={
-                  (() => addDoc(db, "ShoppingCart"),
-                  {
-                    dta: "data",
-                  })
-                }
-              >
-                save to data
+    <div className="app-background">
+      <div className="main-container">
+        <Form onSubmit={add}>
+          <Form.Group>
+            <br />
+            <Form.Label className="form-label">Grocery List</Form.Label>
+
+            <Form.Control
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <div id="ingredients-buttons">
+              <button className="ingredient-btn" id="add" type="submit">
+                Add
               </button>
             </div>
+            <br />
+          </Form.Group>
+        </Form>
+        <div className="item-list">
+          {items.reverse().map((item, index) => (
+            <div className="item-container" key={index}>
+              <div className="item-name">
+                <span>{item.name}</span>
+                <button
+                  style={{ color: "white" }}
+                  onClick={() => remove(index)}
+                >
+                  remove
+                </button>
+              </div>
+            </div>
           ))}
+        </div>
       </div>
+      <button
+        style={{ color: "red" }}
+        onClick={() => addDocument({ ...items, Timestamp })}
+      >
+        save to data base
+      </button>
+      <Speech />
     </div>
   );
 };
-
 export default ShoppingCart;

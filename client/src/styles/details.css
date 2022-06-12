@@ -1,0 +1,96 @@
+body {
+  background-color: rgb(247, 250, 252);
+}
+
+.rcipe-page {
+  display: flex;
+  margin-top: 4em;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  color: rgb(35, 55, 72);
+}
+.recipe-header {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+  border-bottom: 2px solid rgba(9, 30, 66, 0.13);
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  width: 50%;
+}
+
+.recipe-summary {
+  margin: 1em;
+  font-size: 1.25em;
+  white-space: pre-line;
+  line-height: 2;
+  word-break: break-word;
+}
+.recipe-time {
+  font-size: 1.4em;
+  letter-spacing: 0.25em;
+}
+
+.ingre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ingre-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2em;
+}
+.btn {
+  border-radius: 50%;
+  margin: 0 1em;
+}
+.ingre-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em;
+  font-size: 1em;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  width: 30%;
+}
+.ingre-item {
+  display: flex;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+.ingre-item span {
+  margin: 0 0.2em;
+}
+
+.intruction {
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}
+.stepNum {
+  color: rgb(113, 127, 148);
+  font-size: 1.5em;
+  padding-bottom: 1em;
+  font-weight: 700;
+}
+.step {
+  margin: 1em;
+  font-weight: 500;
+  font-size: 1.25em;
+  white-space: pre-line;
+  line-height: 2;
+  word-break: break-word;
+}
