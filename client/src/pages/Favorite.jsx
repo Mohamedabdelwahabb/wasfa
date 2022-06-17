@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { dltRecipeById } from "../util/firebase.config";
+import { dltDoceById } from "../util/firebase.config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import RecipeCard from "../components/card/Card";
@@ -11,7 +11,7 @@ import { Button, Container, Box } from "@mui/material";
 
 const Favorite = ({ image, title, id, rating }) => {
   const [favorite] = useCollection("favorites");
-
+  console.log(image);
   return (
     <Container sx={{ display: "flex", flexDirection: "row" }}>
       <NavLink to="/create">
@@ -22,13 +22,18 @@ const Favorite = ({ image, title, id, rating }) => {
 
       <Box>
         {favorite &&
-          favorite?.map(({ title, id, image }) => {
+          favorite?.map(({ title, id, image, cookTime }) => {
             return (
               <Fragment key={id}>
-                <RecipeCard image={image} title={title} id={id} />
+                <RecipeCard
+                  image={image}
+                  title={title}
+                  id={id}
+                  cookTime={cookTime}
+                />
                 <button
                   onClick={() => {
-                    dltRecipeById(id);
+                    dltDoceById(id, "favorites");
                   }}
                 >
                   <DeleteIcon />

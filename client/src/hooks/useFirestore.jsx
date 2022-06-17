@@ -73,14 +73,6 @@ export const useFirestore = (collectionName) => {
         type: "ADDED_DOCUMENT",
         payload: addedDocument,
       });
-
-      // upload image
-      // const uploadPath = `images/${addedDocument.id}/${}`;
-      // const img = await ref(storage).put();
-      // const imgUrl = await img.ref.getDownloadURL();
-
-      // // add image to recipe
-      // await addedDocument.doc.update({ image: imgUrl });
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: err.message });
     }

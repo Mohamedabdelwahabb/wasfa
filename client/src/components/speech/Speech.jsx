@@ -1,56 +1,41 @@
+//!By default, speech recognition is not supported in all browsers, with the best native experience being available on desktop Chrome. To avoid the limitations of native browser speech recognition, it's recommended that you combine react-speech-recognition with a speech recognition polyfill.
 import { useRef, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import "./speech.css";
+import SettingsVoiceIcon from "@mui/icons-material/SettingsVoice";
 
-function Speech(props) {
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+
+function Speech({ setName, setCartList }) {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
-  const [name, setName] = useState("");
-  //speech value is string so need to conevrt it to array  can add all items one time
+
+  //!speech value is string so need to conevrt it to array  can add all items one time
   function SpeechToArray(str) {
     return str.trim().split(" ");
   }
 
-  const [items, setItems] = useState([]);
-  const add = (e) => {
+  let SpeechValue = SpeechToArray(transcript);
+  const handleAddButtonClick = (e) => {
     e.preventDefault();
-    if (!name) {
+    if (!e) {
       return;
     }
-    setItems((items) => [
-      ...items,
-      {
-        complete: false,
-        name,
-      },
-    ]);
-    setName("");
-  };
-
-  const handleAddButtonClick = () => {
-    let SpeechValue = SpeechToArray(transcript);
-    const SingleValue = SpeechValue.map((element) => {
-      const newItem = {
-        name: element,
-        complete: false,
-      };
-      console.log(newItem);
-
-      return newItem;
-    });
-    setItems([...items, SingleValue]);
+    const SingleValue = SpeechValue.map((element) =>
+      setCartList((cartList) => [...cartList, element])
+    );
     setName("");
     handleReset();
   };
-  console.log(items);
+
   const microphoneRef = useRef(null);
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
-      <div className="mircophone-container">
+      <Box className="mircophone-container">
         Browser is not Support Speech Recognition.
-      </div>
+      </Box>
     );
   }
   const handleListing = () => {
@@ -60,7 +45,7 @@ function Speech(props) {
       continuous: true,
     });
   };
-  const stopHandle = (props) => {
+  const stopHandle = () => {
     setIsListening(false);
     microphoneRef.current.classList.remove("listening");
     SpeechRecognition.stopListening();
@@ -70,33 +55,24 @@ function Speech(props) {
     resetTranscript();
   };
   return (
-    <div className="microphone-wrapper">
-      <div className="mircophone-container">
-        <button className="microphone-reset btn" onClick={handleAddButtonClick}>
-          save
-        </button>
-        <div
-          className="microphone-icon-container"
-          ref={microphoneRef}
-          onClick={handleListing}
-        ></div>
-        <div className="microphone-status">
+    <Box>
+      <Box>
+        <Button ref={microphoneRef} onClick={handleListing}>
+          <SettingsVoiceIcon />{" "}
+        </Button>
+        <Typography>
           {isListening ? "Listening........." : "Click to add "}
-        </div>
-        {isListening && (
-          <button className="microphone-stop btn" onClick={stopHandle}>
-            Stop
-          </button>
-        )}
-      </div>
+        </Typography>
+        {isListening && <Button onClick={stopHandle}>Stop</Button>}
+      </Box>
       {transcript && (
-        <div className="microphone-result-container">
-          <button className="microphone-reset btn" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
+        <Box>
+          <Button onClick={(e) => handleAddButtonClick(e)}>save</Button>
+          <Typography> {transcript} </Typography>
+          <Button onClick={handleReset}>Reset</Button>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
 export default Speech;

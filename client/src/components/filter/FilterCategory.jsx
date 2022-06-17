@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import React from "react";
+//!
+import { Box } from "@mui/material";
 import "./filter.css";
 
 const FilterCategory = ({ setType, type, changeFilter }) => {

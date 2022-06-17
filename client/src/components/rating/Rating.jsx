@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
 import { db } from "../../util/firebase.config";
+//!
 import { doc, updateDoc } from "firebase/firestore";
 import { Box, Rating } from "@mui/material";
 

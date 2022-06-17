@@ -1,19 +1,24 @@
 import { useState } from "react";
-import { Timestamp, collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import Box from "@mui/material/Box";
 import { db, storage } from "../util/firebase.config";
-import "../styles/form.css";
-import Form from "react-bootstrap/Form";
+// !mui
+import { Container, FormGroup, Box } from "@mui/material";
+// !
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Container } from "@mui/material";
+import { ButtonA } from "./RecipeDetail";
+import styled from "@emotion/styled";
 
 export default function CreateRecipe() {
+  const navigate = useNavigate();
+  const [progress, setProgress] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
+  const [vidoeUrl, setVideoUrl] = useState("");
   const [formData, setFormData] = useState({
     title: "",
-    image: "",
+    image: null,
+    video: null,
     description: "",
     ingredients: [],
     instructions: [],
@@ -21,6 +26,7 @@ export default function CreateRecipe() {
     cookTime: "",
     category: "",
   });
+
   const categories = [
     "breakfast",
     "lunch",
@@ -38,8 +44,7 @@ export default function CreateRecipe() {
       </option>
     );
   });
-  const [progress, setProgress] = useState(0);
-  const [imageUrl, setImageUrl] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -92,24 +97,10 @@ export default function CreateRecipe() {
       instructions: [...formData.instructions, ""],
     });
   };
-  const handleSubmit = () => {
-    if (
-      !formData.title ||
-      !formData.description ||
-      !formData.ingredients ||
-      !formData.instructions ||
-      !formData.cookTime ||
-      !formData.servings ||
-      !formData.category
-    ) {
-      alert("Please fill all the fields");
-      return;
-    }
-
+  const upload = () => {
     const storageRef = ref(storage, `/images/${formData.image.name}`);
 
     const uploadImage = uploadBytesResumable(storageRef, formData.image);
-
     uploadImage.on(
       "state_changed",
       (snapshot) => {
@@ -122,186 +113,213 @@ export default function CreateRecipe() {
         console.log(err);
       },
       () => {
-        setFormData({
-          title: "",
-          image: "",
-          description: "",
-          ingredients: [],
-          instructions: [],
-          servings: 0,
-          cookTime: "",
-          category: "",
-        });
-
-        getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          const recipeRef = collection(db, "recipes");
-          addDoc(recipeRef, { ...formData, image: url })
-            .then(() => {
-              ("Article added successfully");
-              setProgress(0);
-            })
-            .catch((err) => {
-              console.log("Error adding article");
-            });
-        });
+        getDownloadURL(uploadImage.snapshot.ref)
+          .then((url) => {
+            setImageUrl(url);
+          })
+          .then(() => {
+            setProgress(0);
+          })
+          .catch((err) => {
+            console.log("Error");
+          });
       }
     );
   };
+  const uploadVideoFunc = () => {
+    const storageRef = ref(storage, `/videos/${formData.video.name}`);
+
+    const uploadVideo = uploadBytesResumable(storageRef, formData.video);
+    uploadVideo.on(
+      "state_changed",
+      (snapshot) => {
+        const progressPercent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progressPercent);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        getDownloadURL(uploadVideo.snapshot.ref)
+          .then((url) => {
+            setVideoUrl(url);
+          })
+          .then(() => {
+            setProgress(0);
+          })
+          .catch((err) => {
+            console.log("Error");
+          });
+      }
+    );
+  };
+  const handleSubmit = () => {
+    if (!formData.title) {
+      alert("Please fill title");
+      return;
+    }
+    const recipeRef = collection(db, "favorites");
+    addDoc(recipeRef, { ...formData, image: imageUrl, video: vidoeUrl });
+    setFormData({
+      title: "",
+      image: null,
+      video: null,
+      description: "",
+      ingredients: [],
+      instructions: [],
+      servings: 0,
+      cookTime: "",
+      category: "",
+    });
+    navigate("/favorite");
+  };
 
   return (
-    <Container>
+    <Container
+      sx={{
+        display: "grid",
+        gridRowGap: "20px",
+        padding: "20px",
+        margin: "4em 20em",
+        color: "white",
+        backgroundColor: " #2ab2af",
+      }}
+    >
       <h2>Create Recipe</h2>
+      <form>
+        <Box>
+          <Label sx={{ color: "white" }}>Title</Label>
+          <Input
+            focused
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={(e) => handleChange(e)}
+          />
+        </Box>
+        {/* <Box bgcolor={red}>
+        <UploaodFiles setImageUrl={setImageUrl} />
+      </Box> */}
+        <Box>
+          <Label>Image</Label>
+          <Input
+            type="file"
+            accept="image/*"
+            name="image"
+            onChange={(e) => handleFilesChange(e)}
+          />
 
-      <Box className="form-group">
-        <label htmlFor="">Title</label>
-        <input
-          type="text"
-          name="title"
-          className="form-control"
-          value={formData.title}
-          onChange={(e) => handleChange(e)}
-        />
-      </Box>
-      <Box>
-        <label htmlFor="">Image</label>
-        <input
-          type="file"
-          name="image"
-          className="form-control"
-          onChange={(e) => handleFilesChange(e)}
-        />
-      </Box>
-      <Box>
-        {" "}
-        <label htmlFor="">video</label>
-        <input
-          type="file"
-          name="video"
-          className="form-control"
-          onChange={(e) => handleFilesChange(e)}
-        />
-      </Box>
-      <Box>
+          <ButtonA onClick={upload}> upload</ButtonA>
+        </Box>
+        <Box></Box>
+        <Box>
+          <Label>video</Label>
+          <Input
+            type="file"
+            name="video"
+            onChange={(e) => handleFilesChange(e)}
+          />
+          <ButtonA onClick={uploadVideoFunc}> upload</ButtonA>
+        </Box>
         {progress === 0 ? null : (
-          <div className="progress">
-            <div
-              className="progress-bar progress-bar-striped mt-2"
-              style={{ width: `${progress}%` }}
-            >
-              {`uploading image ${progress}%`}
+          <div>
+            <div style={{ width: `${progress}%` }}>
+              {`uploading  ${progress}%`}
             </div>
           </div>
         )}
-      </Box>
+        {/* description */}
+        <Box>
+          <Label htmlFor="">Description</Label>
+          <Input
+            name="description"
+            value={formData.description}
+            onChange={(e) => handleChange(e)}
+          />
+        </Box>
 
-      {/* description */}
-      <Box>
-        <label htmlFor="">Description</label>
-        <textarea
-          name="description"
-          className="form-control"
-          value={formData.description}
+        <Box>
+          <Label>Ingredients</Label>
+          {formData?.ingredients?.map((ingredient, i) => (
+            <Input
+              type="text"
+              key={i}
+              onChange={(e) => handleIngredient(e, i)}
+            />
+          ))}
+          <div>
+            <ButtonA size="small" onClick={handleIngredientNext}>
+              Add
+            </ButtonA>
+            <ButtonA size="small" onClick={handleRemoveIngredient}>
+              Remove
+            </ButtonA>
+          </div>
+          <br />
+        </Box>
+        <FormGroup>
+          <Label>Instructions</Label>
+          {formData?.instructions?.map((step, i) => (
+            <Input
+              type="text"
+              key={i}
+              value={step}
+              onChange={(e) => handeleInstruction(e, i)}
+            />
+          ))}
+          <Box>
+            <ButtonA onClick={handleInstructionNext}>Add</ButtonA>
+            <ButtonA onClick={handleRemoveIngredient}>Remove</ButtonA>
+          </Box>
+        </FormGroup>
+
+        <Label>Cook Time</Label>
+        <Input
+          type="text"
+          name="cookTime"
+          value={formData.cookTime}
           onChange={(e) => handleChange(e)}
         />
-      </Box>
 
-      <Box>
-        <br />
-        <Form.Label className="form-label">Ingredients</Form.Label>
-        {formData?.ingredients?.map((ingredient, i) => (
-          <Form.Control
-            type="text"
-            key={i}
-            onChange={(e) => handleIngredient(e, i)}
-          />
-        ))}
-        <div id="ingredients-buttons">
-          <button
-            className="ingredient-btn"
-            id="add"
-            onClick={handleIngredientNext}
-          >
-            Add
-          </button>
-          <button
-            className="ingredient-btn"
-            id="remove"
-            onClick={handleRemoveIngredient}
-          >
-            Remove
-          </button>
-        </div>
-        <br />
-      </Box>
-      <Form.Group>
-        <Form.Label className="form-label">Instructions</Form.Label>
-        {formData?.instructions?.map((step, i) => (
-          <Form.Control
-            type="text"
-            key={i}
-            value={step}
-            onChange={(e) => handeleInstruction(e, i)}
-          />
-        ))}
-        <div id="ingredients-buttons">
-          <button
-            className="ingredient-btn"
-            id="add"
-            onClick={handleInstructionNext}
-          >
-            Add
-          </button>
-          <button
-            className="ingredient-btn"
-            id="remove"
-            onClick={handleRemoveIngredient}
-          >
-            Remove
-          </button>
-        </div>
-      </Form.Group>
-      <Row>
-        <Col>
-          <Form.Label className="form-label">Cook Time</Form.Label>
-          <Form.Control
-            type="text"
-            name="cookTime"
-            value={formData.cookTime}
-            onChange={(e) => handleChange(e)}
-            required
-          />
-        </Col>
-
-        <Col>
-          <Form.Label className="form-label">Servings</Form.Label>
-          <Form.Control
-            type="number"
-            step="1"
-            min="1"
-            onChange={(e) =>
-              setFormData({ ...formData, servings: e.target.value })
-            }
-            required
-          />
-        </Col>
-      </Row>
-      <Form.Group>
-        <Form.Label className="form-label">Category</Form.Label>
-        <Form.Select
+        <Label>Servings</Label>
+        <Input
+          type="number"
+          step="1"
+          min="1"
           onChange={(e) =>
-            setFormData({ ...formData, category: e.target.value })
+            setFormData({ ...formData, servings: e.target.value })
           }
-        >
-          <option>Choose a category</option>
-          {categoryOptions}
-        </Form.Select>
-      </Form.Group>
+        />
 
-      <input className="form-control btn-primary mt-2" type="submit" />
+        <FormGroup>
+          <Label>Category</Label>
 
-      <button className="form-control btn-primary mt-2" onClick={handleSubmit}>
-        Save
-      </button>
+          <select
+            onChange={(e) => {
+              setFormData({ ...formData, category: e.target.value });
+              console.log(formData.category);
+            }}
+          >
+            {categoryOptions}
+          </select>
+        </FormGroup>
+
+        <ButtonA onClick={handleSubmit}>Save</ButtonA>
+      </form>
     </Container>
   );
 }
+
+const Input = styled("input")({
+  border: "2px solid white ",
+  backgroundColor: "white",
+  color: "green",
+  margin: "2em",
+  width: "300px",
+});
+const Label = styled("label")({
+  color: "white",
+  width: "30px",
+});

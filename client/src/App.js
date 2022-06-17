@@ -5,7 +5,7 @@ import Favorite from "./pages/Favorite";
 import Planner from "./pages/Planner";
 import RecipeDetail from "./pages/RecipeDetail";
 import NavBar from "./components/navbar/Navbar";
-import ShoppingCart from "./pages/Grocery";
+import Shopping from "./pages/Grocery";
 import { Footer } from "./components/footer/Footer";
 
 import { ThemeContext } from "./context/ThemeContext";
@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorite" element={<Favorite />} />
-          <Route path="/grocery" element={<ShoppingCart />} />
+          <Route path="/grocery" element={<Shopping />} />
           <Route path="/planner" element={<Planner />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
           <Route path="/create" element={<CreateRecipe />} />

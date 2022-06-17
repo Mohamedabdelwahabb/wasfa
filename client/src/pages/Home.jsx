@@ -7,7 +7,7 @@ import FilterCategory from "../components/filter/FilterCategory";
 import debounce from "lodash.debounce";
 import { useCollection } from "../hooks/useCollection";
 import { Loading } from "../components/loading/Loading";
-import Suggestion from "../components/suggestion/Suggestion";
+import SuggestionList from "../components/suggestion/SuggestionList";
 import { RatingComp } from "../components/rating/Rating";
 
 const Home = () => {
@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <Container>
       <Hero />
-      <Suggestion />
+      <SuggestionList />
       <Search onChange={debouncedOnChange} />
       <FilterCategory
         setType={setType}
@@ -85,7 +85,8 @@ const Home = () => {
                 image={recipe.image}
                 id={recipe.id}
                 rating={recipe.rating}
-                servings={recipe.servings}
+                cookTime={recipe.cookTime}
+                description={recipe.description}
               />
               <RatingComp rating={recipe.rating} id={recipe.id} />
             </Box>

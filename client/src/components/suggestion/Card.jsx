@@ -1,21 +1,10 @@
-import { Box, CardMedia, styled, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
-
-// export const Card = ({ image, title, id }) => {
-//   return (
-
-//       <Wraper item xs={3}>
-//         <CardMedia image={image} alt={title} sx={{ height: 200 }} />
-//         <Typography sx={{ fontSize: 14 }}>{title} </Typography>
-//       </Wraper>
-
-//   );
-// };
-
 import * as React from "react";
+import { NavLink } from "react-router-dom";
+//
+import { Box, CardMedia, styled, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-
 import CardContent from "@mui/material/CardContent";
+//
 
 export const SuggestionCard = ({ image, title, id, category }) => {
   return (
@@ -35,6 +24,8 @@ export const SuggestionCard = ({ image, title, id, category }) => {
     </NavLink>
   );
 };
+
+//style
 const Wraper = styled(Box)`
   height: 300px;
   width: 245px;

@@ -25,7 +25,7 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState([]);
   const [value, setValue] = useState(0);
   const [list, setList] = useState({
-    CartList: [],
+    cartList: [],
   });
 
   //! import theme cuz only background color of the body change but not the container of recipe detaill
@@ -55,7 +55,7 @@ const RecipeDetail = () => {
   let totalServing = servings + value;
 
   const addToCart = () => {
-    setDoc(doc(db, "ShoppingCart", id), list);
+    setDoc(doc(db, "ShoppingCart", id), { ...list, title: recipe.title });
     handleClose();
   };
   const handleClickOpen = () => {
@@ -68,19 +68,19 @@ const RecipeDetail = () => {
   const handleCartList = (e) => {
     //! Destructuring
     const { value, checked } = e.target;
-    const { CartList } = list;
+    const { cartList } = list;
 
     //! Case 1 : The user checks the box
     if (checked) {
       setList({
-        CartList: [...CartList, value],
+        cartList: [...cartList, value],
       });
     }
 
     //! Case 2  : The user unchecks the box
     else {
       setList({
-        CartList: CartList.filter((e) => e !== value),
+        cartList: cartList.filter((e) => e !== value),
       });
     }
   };
@@ -206,13 +206,16 @@ export default RecipeDetail;
  
   }
    */
-const ButtonA = styled(Button)`
+export const ButtonA = styled(Button)`
   margin-top: 1em;
   font-size: 1em;
   border: none;
   background: #5cac0e;
   border-radius: 15px;
   color: white;
+  &::hover {
+    color: "red";
+  }
 `;
 const Title = styled(Typography)`
   letter-spacing: 0.2em;

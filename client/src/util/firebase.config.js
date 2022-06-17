@@ -23,12 +23,12 @@ const fetchRecipesCol = async () => {
   return result;
 };
 
-const dltRecipeById = async (id) => {
-  await deleteDoc(doc(db, "favorites", id));
+const dltDoceById = async (id, coll) => {
+  await deleteDoc(doc(db, coll, id));
   return id;
 };
 const updateRecipe = async (id, data) => {
   const docRef = doc(db, "favorites", id);
   await updateDoc(docRef, data);
 };
-export { fetchRecipesCol, recipeRef, db, dltRecipeById, updateRecipe, storage };
+export { fetchRecipesCol, recipeRef, db, dltDoceById, updateRecipe, storage };

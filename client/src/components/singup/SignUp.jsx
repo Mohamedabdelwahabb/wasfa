@@ -1,3 +1,5 @@
+//!next update
+
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -15,19 +17,14 @@ const SingUp = () => {
       [email]: value,
     });
   };
-  const handleSliderChange = (email) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [email]: value,
-    });
-  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
   };
   return (
     <form onSubmit={handleSubmit}>
-      <Grid container alignItems="center" justify="center" direction="column">
+      <Grid container>
         <Grid item>
           <TextField
             id="name-input"
