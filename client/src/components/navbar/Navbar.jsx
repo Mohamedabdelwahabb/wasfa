@@ -1,9 +1,12 @@
-import { NavLink } from "react-router-dom";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import classes from "./navbar.css";
 import { useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+//!
 import { ThemeContext } from "../../context/ThemeContext";
+//!
+import classes from "./navbar.css";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { Button } from "@mui/material";
+//!
 const NavBar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -11,6 +14,7 @@ const NavBar = () => {
     const items = JSON.parse(localStorage.getItem("theme"));
     localStorage.setItem("theme", JSON.stringify(theme));
   }, [theme]);
+
   return (
     <header className="header">
       <div className="container">

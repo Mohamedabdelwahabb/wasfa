@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+//!
+import { useCollection } from "../hooks/useCollection";
+import debounce from "lodash.debounce";
+//!
+import { Box, Container, Grid } from "@mui/material";
+//!
 import Hero from "../components/herosection/Hero";
 import RecipeCard from "../components/card/Card";
-import { Box, Container, Grid } from "@mui/material";
 import Search from "../components/search/Search";
 import FilterCategory from "../components/filter/FilterCategory";
-import debounce from "lodash.debounce";
-import { useCollection } from "../hooks/useCollection";
 import { Loading } from "../components/loading/Loading";
 import SuggestionList from "../components/suggestion/SuggestionList";
-import { RatingComp } from "../components/rating/Rating";
+import RatingComp from "../components/rating/Rating";
 
 const Home = () => {
   const [filterRecipes, setfilterRecipes] = useState([]);

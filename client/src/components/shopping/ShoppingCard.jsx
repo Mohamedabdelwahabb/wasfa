@@ -1,38 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 //!
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../util/firebase.config";
 //!
-import styled from "@emotion/styled";
-import { Button, Checkbox, Grid, Paper, Typography, Box } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-//!
-const Item = styled(Paper)(({ theme }) => ({
-  textAlign: "center",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  flexDirection: "column",
-}));
 
-export const ShoppingCard = ({ id }) => {
+import { Button, Checkbox, Grid, Typography, Box } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import "../../styles/grocery.css";
+//! custom style
+import { Item } from "../../pages/Shopping";
+//!
+
+const ShoppingCard = () => {
+  const { id } = useParams();
   const [cart, setCart] = useState([]);
   const docRef = doc(db, "ShoppingCart", id);
 
-  const updateList = async (ind, elementName) => {
-    console.log(elementName, ind);
-    await updateDoc(docRef, {
-      items: cart?.items?.filter((item) => item.ind !== ind),
+  const updateList = async (id, data) => {
+    const removeRes = await updateDoc(docRef, {
+      cartList: arrayRemove(data),
     });
+    return removeRes;
   };
 
-  // const toggleComplete = (index) => {
-  //   const newItems = [...items];
-
-  //   newItems[index].complete = !newItems[index].complete;
-
-  //   setItems(newItems);
-  // };
   useEffect(() => {
     const unsub = async () => {
       await getDoc(docRef).then((doc) => {
@@ -55,14 +46,19 @@ export const ShoppingCard = ({ id }) => {
     <Grid container>
       <Grid item xs={10} md={10}>
         <Item>
-          {" "}
           {cart &&
             cart?.cartList?.map((item, ind) => {
               return (
                 <Box key={ind} sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography>{item} </Typography>
+                  <Typography>{item}</Typography>
                   <Checkbox color="success" value={item} />
-                  <Button sx={{ color: "red" }} onClick={() => updateList(ind)}>
+                  <Button
+                    sx={{ color: "red" }}
+                    onClick={() => {
+                      console.log(ind);
+                      updateList(ind, item);
+                    }}
+                  >
                     <DeleteIcon />
                   </Button>
                 </Box>
@@ -73,3 +69,4 @@ export const ShoppingCard = ({ id }) => {
     </Grid>
   );
 };
+export default ShoppingCard;

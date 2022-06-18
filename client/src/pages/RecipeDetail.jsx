@@ -1,32 +1,26 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+//!
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../util/firebase.config";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-
+//!
 import {
   Box,
   Button,
   ButtonGroup,
-  Checkbox,
+  CardMedia,
   Container,
   styled,
   Typography,
 } from "@mui/material";
 import "../styles/details.css";
+//!
 import { ThemeContext } from "../context/ThemeContext";
+import CreateShoppingList from "../components/shopping/CreateFromRecipe";
 
 const RecipeDetail = () => {
-  const [open, setOpen] = useState(false);
   const [recipe, setRecipe] = useState([]);
   const [value, setValue] = useState(0);
-  const [list, setList] = useState({
-    cartList: [],
-  });
 
   //! import theme cuz only background color of the body change but not the container of recipe detaill
   const { theme } = useContext(ThemeContext);
@@ -52,43 +46,18 @@ const RecipeDetail = () => {
   }, [value]);
 
   const { ingredients, servings } = recipe;
-  let totalServing = servings + value;
-
-  const addToCart = () => {
-    setDoc(doc(db, "ShoppingCart", id), { ...list, title: recipe.title });
-    handleClose();
-  };
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleCartList = (e) => {
-    //! Destructuring
-    const { value, checked } = e.target;
-    const { cartList } = list;
-
-    //! Case 1 : The user checks the box
-    if (checked) {
-      setList({
-        cartList: [...cartList, value],
-      });
-    }
-
-    //! Case 2  : The user unchecks the box
-    else {
-      setList({
-        cartList: cartList.filter((e) => e !== value),
-      });
-    }
-  };
+  let totalServing = +servings + value;
 
   return (
     <Container className={`rcipe-page ${theme} `}>
       <header className="recipe-header ">
-        <img src={recipe?.image} alt={recipe?.title} />
+        <CardMedia
+          sx={{ width: "50%", objectFit: "cover" }}
+          height="350"
+          component="img"
+          image={recipe?.image}
+          alt={recipe.title}
+        />
 
         <article className="header-content ">
           <Title className="recipe-title ">{recipe.title} </Title>
@@ -96,88 +65,51 @@ const RecipeDetail = () => {
           <p className="recipe-time">Prep : {recipe.cookTime}min</p>
         </article>
       </header>
-
+      <video width="450px" height="240" controls src={recipe?.video} />
       <section className="ingre">
         <Title>Ingredients</Title>
-        <div className="ingre-header">
+        <Box className="ingre-header">
           <ButtonGroup size="small" aria-label="small outlined button group">
             <Button className="btn" onClick={() => setValue(value - 1)}>
               -
             </Button>
-            <Typography sx={{ fontSize: "1.25em", padding: ".25" }}>
+            <Typography sx={{ padding: ".25" }}>
               {totalServing} servings
             </Typography>
             <Button className="btn" onClick={() => setValue(value + 1)}>
               +
             </Button>
           </ButtonGroup>
-        </div>
-        <div className="ingre-container">
-          {ingredients?.map(({ id, amount, name, unit }) => {
+        </Box>
+        <Box className="ingre-container">
+          {ingredients?.map(({ amount, name, unit }, i) => {
             return (
-              <div key={id} className="ingre-list text">
-                <div className="ingre-item">
-                  <span>{amount * totalServing}</span>
+              <Box key={i} className="ingre-list text">
+                <Box className="ingre-item">
+                  <span>{(amount / servings).toFixed(1) * totalServing}</span>
                   <span> {unit} </span>
                   <span> {name} </span>
-                </div>
-              </div>
+                </Box>
+              </Box>
             );
           })}
-          <div>
-            <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>Add to Shopping List</DialogTitle>
-              <DialogContent>
-                {ingredients?.map(({ name, id }) => {
-                  return (
-                    <Box
-                      key={id}
-                      sx={{
-                        width: 400,
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Box>
-                        <Typography gutterBottom variant="h6" component="div">
-                          {name}
-                        </Typography>
-                      </Box>
-                      <Box>
-                        <Checkbox
-                          color="success"
-                          value={name}
-                          onChange={(e) => handleCartList(e)}
-                        />
-                      </Box>
-                    </Box>
-                  );
-                })}
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={addToCart}>Add</Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-        </div>
-        <ButtonA
-          variant="contained"
-          size="medium"
-          startIcon={<AddShoppingCartIcon />}
-          onClick={handleClickOpen}
-        >
-          Add
-        </ButtonA>
+        </Box>
+        <Box>
+          <CreateShoppingList
+            id={id}
+            title={recipe.title}
+            ingredients={ingredients}
+          />
+        </Box>
       </section>
       <section className="intruction">
         <Title>Instructions</Title>
         {recipe?.instructions?.map((step, index) => {
           return (
-            <div key={index}>
+            <Box key={index}>
               <span className="stepNum">Step {index + 1}</span>
               <p className="step">{step} </p>
-            </div>
+            </Box>
           );
         })}
       </section>
@@ -207,7 +139,6 @@ export default RecipeDetail;
   }
    */
 export const ButtonA = styled(Button)`
-  margin-top: 1em;
   font-size: 1em;
   border: none;
   background: #5cac0e;
@@ -218,8 +149,8 @@ export const ButtonA = styled(Button)`
   }
 `;
 const Title = styled(Typography)`
-  letter-spacing: 0.2em;
-  margin: 2em 0;
+  letter-spacing: 3px;
+  margin: 1em 0;
   word-break: break-word;
   font-size: 1.5em;
 `;

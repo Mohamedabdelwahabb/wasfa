@@ -1,16 +1,20 @@
 .recipe-filter {
   margin: 2em;
+  background-color: white;
 }
 .recipe-filter button {
-  font-size: 1.25em;
+  font-size: 1em;
   border: none;
-  color: rgba(105, 203, 212, 0.89);
-  width: 70px;
+  color: white;
+  width: 90px;
   height: 50px;
   border-radius: 5px;
   margin: 0.5em;
   cursor: pointer;
 }
+.recipe-filter button {
+  background: #5cac0e;
+}
 .recipe-filter button.active {
-  background-color: rgba(86, 110, 230, 0.098);
+  background-color: #0e8cac;
 }

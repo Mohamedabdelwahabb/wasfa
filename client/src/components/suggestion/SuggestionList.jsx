@@ -7,14 +7,14 @@ import SuggestedMeal from "./SuggestedMeal";
 
 const SuggestionList = () => {
   return (
-    <Fragment>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography variant="h4" gutterBottom component="div">
         <Alert severity="info">
           it is time for breakfast — <strong>check our meals !</strong>
         </Alert>
       </Typography>
       <SuggestedMeal />
-    </Fragment>
+    </Box>
   );
 };
 

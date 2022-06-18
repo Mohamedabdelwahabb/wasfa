@@ -1,6 +1,7 @@
+import { NavLink } from "react-router-dom";
+//!
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../util/firebase.config";
-import { NavLink } from "react-router-dom";
 //!
 import { Checkbox, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -12,14 +13,12 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Favorite from "@mui/icons-material/Favorite";
-
+//!
 export default function RecipeCard({
   title,
   image,
   id,
-  rating,
   cookTime,
-  servings,
   description,
 }) {
   const docData = {
@@ -28,7 +27,7 @@ export default function RecipeCard({
     cookTime: cookTime,
     description: description,
   };
-  function handleFav(id) {
+  function addToFavorite(id) {
     setDoc(doc(db, "favorites", id), docData);
   }
   return (
@@ -49,7 +48,7 @@ export default function RecipeCard({
         <CardActions>
           <IconButton
             aria-label="add to favorites"
-            onClick={() => handleFav(id)}
+            onClick={() => addToFavorite(id)}
           >
             <Checkbox
               icon={<FavoriteBorderIcon />}

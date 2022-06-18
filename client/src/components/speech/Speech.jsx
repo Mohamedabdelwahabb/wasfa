@@ -1,14 +1,16 @@
 //!By default, speech recognition is not supported in all browsers, with the best native experience being available on desktop Chrome. To avoid the limitations of native browser speech recognition, it's recommended that you combine react-speech-recognition with a speech recognition polyfill.
+//!
 import { useRef, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+//!
 import SettingsVoiceIcon from "@mui/icons-material/SettingsVoice";
-
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+//!
 
-function Speech({ setName, setCartList }) {
+const Speech = ({ setName, setCartList }) => {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
 
@@ -74,5 +76,5 @@ function Speech({ setName, setCartList }) {
       )}
     </Box>
   );
-}
+};
 export default Speech;

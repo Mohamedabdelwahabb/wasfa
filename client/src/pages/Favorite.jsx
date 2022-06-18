@@ -1,17 +1,19 @@
 import { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
+//!
 import { dltDoceById } from "../util/firebase.config";
+import { useCollection } from "../hooks/useCollection";
+//!
+import AddIcon from "@mui/icons-material/Add";
+import { Button, Container, Box } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+//!
 import RecipeCard from "../components/card/Card";
-import { useCollection } from "../hooks/useCollection";
-
-import { Button, Container, Box } from "@mui/material";
-
+//!
 const Favorite = ({ image, title, id, rating }) => {
   const [favorite] = useCollection("favorites");
-  console.log(image);
+
   return (
     <Container sx={{ display: "flex", flexDirection: "row" }}>
       <NavLink to="/create">
