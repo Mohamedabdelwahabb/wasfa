@@ -38,7 +38,7 @@ const RecipeDetail = () => {
     if (!recipe) {
       setLoading(true);
     }
-  }, [recipe]);
+  }, [id]);
 
   const { ingredients, servings } = recipe;
   let totalServing = +servings + value;

@@ -30,8 +30,8 @@ export default function EditRecipe() {
     if (!recipe) {
       setLoading(true);
     }
-  }, [recipe]);
-
+  }, [id]);
+  console.log("test");
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };

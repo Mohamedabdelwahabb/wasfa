@@ -25,7 +25,6 @@ const ShoppingCard = () => {
   const [loading, setLoading] = useState(true);
   const docRef = doc(db, "ShoppingCart", id);
   useEffect(() => {
-    const docRef = doc(db, "recipes", id);
     onSnapshot(docRef, (doc) => {
       setCart(doc.data());
       setLoading(false);
@@ -33,14 +32,14 @@ const ShoppingCard = () => {
     if (!cart) {
       setLoading(true);
     }
-  }, [cart]);
+  }, [id]);
   const updateList = async (id, data) => {
     const removeRes = await updateDoc(docRef, {
       cartList: arrayRemove(data),
     });
     return removeRes;
   };
-
+  console.log(cart);
   return (
     <Grid container>
       {loading && <Loading />}
