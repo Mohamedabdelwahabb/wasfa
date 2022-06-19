@@ -37,7 +37,7 @@ const VideoUpload = ({ setVideoUrl, setProgress }) => {
             setProgress(0);
           })
           .catch((err) => {
-            console.log("Error");
+            console.log(err);
           });
       }
     );

@@ -17,6 +17,7 @@ import "../styles/details.css";
 //!
 import { ThemeContext } from "../context/ThemeContext";
 import CreateShoppingList from "../components/shopping/CreateFromRecipe";
+import { Loading } from "../components/loading/Loading";
 
 const RecipeDetail = () => {
   const [recipe, setRecipe] = useState([]);
@@ -26,7 +27,7 @@ const RecipeDetail = () => {
   const { theme } = useContext(ThemeContext);
   const { id } = useParams();
   const docRef = doc(db, "recipes", id);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const unsub = async () => {
       await getDoc(docRef).then((doc) => {
@@ -35,27 +36,30 @@ const RecipeDetail = () => {
             id: doc.id,
             ...doc.data(),
           });
+          setLoading(false);
         } else {
           console.log("not found");
+          setLoading(true);
         }
       });
     };
 
     return () => unsub();
     // eslint-disable-next-line
-  }, [value]);
+  }, []);
 
   const { ingredients, servings } = recipe;
   let totalServing = +servings + value;
 
   return (
     <Container className={`rcipe-page ${theme} `}>
+      {loading && <Loading />}
       <header className="recipe-header ">
         <CardMedia
           sx={{ width: "50%", objectFit: "cover" }}
           height="350"
           component="img"
-          image={recipe?.image}
+          image={recipe.image}
           alt={recipe.title}
         />
 
@@ -65,7 +69,7 @@ const RecipeDetail = () => {
           <p className="recipe-time">Prep : {recipe.cookTime}min</p>
         </article>
       </header>
-      <video width="450px" height="240" controls src={recipe?.video} />
+      <video width="450px" height="240" controls src={recipe.video} />
       <section className="ingre">
         <Title>Ingredients</Title>
         <Box className="ingre-header">
@@ -82,17 +86,18 @@ const RecipeDetail = () => {
           </ButtonGroup>
         </Box>
         <Box className="ingre-container">
-          {ingredients?.map(({ amount, name, unit }, i) => {
-            return (
-              <Box key={i} className="ingre-list text">
-                <Box className="ingre-item">
-                  <span>{(amount / servings).toFixed(1) * totalServing}</span>
-                  <span> {unit} </span>
-                  <span> {name} </span>
+          {ingredients &&
+            ingredients.map(({ amount, name, unit }, i) => {
+              return (
+                <Box key={i} className="ingre-list text">
+                  <Box className="ingre-item">
+                    <span>{(amount / servings).toFixed(1) * totalServing}</span>
+                    <span> {unit} </span>
+                    <span> {name} </span>
+                  </Box>
                 </Box>
-              </Box>
-            );
-          })}
+              );
+            })}
         </Box>
         <Box>
           <CreateShoppingList
@@ -104,14 +109,15 @@ const RecipeDetail = () => {
       </section>
       <section className="intruction">
         <Title>Instructions</Title>
-        {recipe?.instructions?.map((step, index) => {
-          return (
-            <Box key={index}>
-              <span className="stepNum">Step {index + 1}</span>
-              <p className="step">{step} </p>
-            </Box>
-          );
-        })}
+        {recipe.instructions &&
+          recipe.instructions.map((step, index) => {
+            return (
+              <Box key={index}>
+                <span className="stepNum">Step {index + 1}</span>
+                <p className="step">{step} </p>
+              </Box>
+            );
+          })}
       </section>
     </Container>
   );

@@ -26,7 +26,7 @@ const Ingredient = ({ ingredients, setIngredient }) => {
   const remove = (index) => {
     setIngredient((ingredients) => ingredients.filter((_, i) => i !== index));
   };
-  console.log(ingredients);
+
   return (
     <Box sx={{ dispaly: "flex" }}>
       <Box onSubmit={add} component="form" noValidate autoComplete="off">

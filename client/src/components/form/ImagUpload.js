@@ -13,7 +13,7 @@ const ImgUpload = ({ setImageUrl, setProgress }) => {
   const handleFilesChange = (e) => {
     setImage(e.target.files[0]);
   };
-  console.log(image);
+
   const upload = () => {
     const storageRef = ref(storage, `/images/${image.name}`);
 
@@ -38,7 +38,7 @@ const ImgUpload = ({ setImageUrl, setProgress }) => {
             setProgress(0);
           })
           .catch((err) => {
-            console.log("Error");
+            console.log(err);
           });
       }
     );

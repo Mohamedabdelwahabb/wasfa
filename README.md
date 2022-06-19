@@ -1,2 +1,0 @@
-# wasfa
-syntra project

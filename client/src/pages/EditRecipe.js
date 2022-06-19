@@ -37,8 +37,8 @@ export default function EditRecipe() {
 
     return () => unsub();
     // eslint-disable-next-line
-  }, [id]);
-  console.log(recipe);
+  }, []);
+
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -52,7 +52,7 @@ export default function EditRecipe() {
       cookTime:
         formData.newCookTime === "" ? recipe.cookTime : formData.newCookTime,
     };
-    console.log(recipe);
+
     await editDocument(docRef, fieldsToUpdate);
     navigate("/favorite");
   };

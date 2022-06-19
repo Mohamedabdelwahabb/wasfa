@@ -25,7 +25,7 @@ const Instructions = ({ instruction, setInstruction }) => {
   const remove = (index) => {
     setInstruction((instruction) => instruction.filter((_, i) => i !== index));
   };
-  console.log(instruction);
+
   return (
     <Box sx={{ dispaly: "flex" }}>
       <Box onSubmit={add} component="form" noValidate autoComplete="off">

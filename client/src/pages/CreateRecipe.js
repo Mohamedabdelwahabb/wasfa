@@ -153,7 +153,7 @@ export default function CreateRecipe() {
         <select
           onChange={(e) => {
             setFormData({ ...formData, category: e.target.value });
-            console.log(formData.category);
+          
           }}
         >
           {categoryOptions}

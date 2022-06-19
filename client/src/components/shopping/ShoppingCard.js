@@ -40,7 +40,7 @@ const ShoppingCard = () => {
 
     return () => unsub();
     // eslint-disable-next-line
-  }, [id]);
+  }, []);
 
   return (
     <Grid container>
@@ -55,7 +55,6 @@ const ShoppingCard = () => {
                   <Button
                     sx={{ color: "red" }}
                     onClick={() => {
-                      console.log(ind);
                       updateList(ind, item);
                     }}
                   >
