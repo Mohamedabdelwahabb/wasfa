@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //!
-import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../util/firebase.config";
 //!
 
@@ -10,13 +16,24 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "../../styles/grocery.css";
 //! custom style
 import { Item } from "../../pages/Shopping";
+import { Loading } from "../loading/Loading";
 //!
 
 const ShoppingCard = () => {
   const { id } = useParams();
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
   const docRef = doc(db, "ShoppingCart", id);
-
+  useEffect(() => {
+    const docRef = doc(db, "recipes", id);
+    onSnapshot(docRef, (doc) => {
+      setCart(doc.data());
+      setLoading(false);
+    });
+    if (!cart) {
+      setLoading(true);
+    }
+  }, [cart]);
   const updateList = async (id, data) => {
     const removeRes = await updateDoc(docRef, {
       cartList: arrayRemove(data),
@@ -24,26 +41,9 @@ const ShoppingCard = () => {
     return removeRes;
   };
 
-  useEffect(() => {
-    const unsub = async () => {
-      await getDoc(docRef).then((doc) => {
-        if (doc.exists) {
-          setCart({
-            id: doc.id,
-            ...doc.data(),
-          });
-        } else {
-          console.log("not found");
-        }
-      });
-    };
-
-    return () => unsub();
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <Grid container>
+      {loading && <Loading />}
       <Grid item xs={10} md={10}>
         <Item>
           {cart &&

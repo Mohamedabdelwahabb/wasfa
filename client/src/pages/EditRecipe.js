@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 //!
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../util/firebase.config";
 import { useFirestore } from "../hooks/useFirestore";
 //!
 import { Container, FormGroup } from "@mui/material";
 import styled from "@emotion/styled";
+import { Loading } from "../components/loading/Loading";
 //!
 export default function EditRecipe() {
   const { editDocument } = useFirestore("favorites");
   const navigate = useNavigate();
   const { id } = useParams();
-  const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [recipe, setRecipe] = useState([]);
   const [formData, setformData] = useState({
     newTitle: "",
     newDesc: "",
@@ -20,24 +22,15 @@ export default function EditRecipe() {
   });
 
   const docRef = doc(db, "favorites", id);
-
   useEffect(() => {
-    const unsub = async () => {
-      await getDoc(docRef).then((doc) => {
-        if (doc.exists) {
-          setRecipe({
-            id: doc.id,
-            ...doc.data(),
-          });
-        } else {
-          console.log("not found");
-        }
-      });
-    };
-
-    return () => unsub();
-    // eslint-disable-next-line
-  }, []);
+    onSnapshot(docRef, (doc) => {
+      setRecipe(doc.data());
+      setLoading(false);
+    });
+    if (!recipe) {
+      setLoading(true);
+    }
+  }, [recipe]);
 
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
@@ -68,6 +61,7 @@ export default function EditRecipe() {
         backgroundColor: " #2ab2af",
       }}
     >
+      {loading && <Loading />}
       {recipe && (
         <>
           <form onSubmit={handleEdit}>

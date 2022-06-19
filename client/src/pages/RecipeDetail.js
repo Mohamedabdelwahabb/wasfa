@@ -28,35 +28,18 @@ const RecipeDetail = () => {
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const unsub =
-  //     await getDoc(docRef).then((doc) => {
-  //       if (doc.exists) {
-  //         setRecipe({
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         });
-  //         setLoading(false);
-  //       } else {
-  //         console.log("not found");
-  //         setLoading(true);
-  //       }
-  //     });
 
-  //   return () => unsub();
-  //   // eslint-disable-next-line
-  // }, []);
   useEffect(() => {
     const docRef = doc(db, "recipes", id);
     onSnapshot(docRef, (doc) => {
       setRecipe(doc.data());
       setLoading(false);
     });
+    if (!recipe) {
+      setLoading(true);
+    }
   }, [recipe]);
 
-  if (!recipe) {
-    setLoading(true);
-  }
   const { ingredients, servings } = recipe;
   let totalServing = +servings + value;
 
