@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 //!
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../util/firebase.config";
 //!
 import {
@@ -26,28 +26,37 @@ const RecipeDetail = () => {
   //! import theme cuz only background color of the body change but not the container of recipe detaill
   const { theme } = useContext(ThemeContext);
   const { id } = useParams();
-  const docRef = doc(db, "recipes", id);
+
   const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const unsub =
+  //     await getDoc(docRef).then((doc) => {
+  //       if (doc.exists) {
+  //         setRecipe({
+  //           id: doc.id,
+  //           ...doc.data(),
+  //         });
+  //         setLoading(false);
+  //       } else {
+  //         console.log("not found");
+  //         setLoading(true);
+  //       }
+  //     });
+
+  //   return () => unsub();
+  //   // eslint-disable-next-line
+  // }, []);
   useEffect(() => {
-    const unsub = async () => {
-      await getDoc(docRef).then((doc) => {
-        if (doc.exists) {
-          setRecipe({
-            id: doc.id,
-            ...doc.data(),
-          });
-          setLoading(false);
-        } else {
-          console.log("not found");
-          setLoading(true);
-        }
-      });
-    };
+    const docRef = doc(db, "recipes", id);
+    onSnapshot(docRef, (doc) => {
+      setRecipe(doc.data());
+      setLoading(false);
+    });
+  }, [recipe]);
 
-    return () => unsub();
-    // eslint-disable-next-line
-  }, []);
-
+  if (!recipe) {
+    setLoading(true);
+  }
   const { ingredients, servings } = recipe;
   let totalServing = +servings + value;
 
