@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 //
 import { Container, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -20,7 +20,7 @@ export default function Shopping() {
     <Container sx={{ marginTop: "4em" }}>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container>
-          <Grid item xs={2} md={2}>
+          <Grid item xs={4} md={4}>
             <Item>
               <BackDrop setTitle={setTitle} />
               <ShoppingList />

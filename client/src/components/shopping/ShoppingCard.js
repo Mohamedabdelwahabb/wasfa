@@ -23,6 +23,7 @@ const ShoppingCard = () => {
   const { id } = useParams();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ischecked, setIsChecked] = useState(false);
   const docRef = doc(db, "ShoppingCart", id);
   useEffect(() => {
     onSnapshot(docRef, (doc) => {
@@ -39,18 +40,28 @@ const ShoppingCard = () => {
     });
     return removeRes;
   };
-  console.log(cart);
+  const handleToggle = (e) => {
+    setIsChecked(e.target.checked);
+  };
   return (
     <Grid container>
       {loading && <Loading />}
-      <Grid item xs={10} md={10}>
+      <Grid item xs={12} md={12}>
         <Item>
           {cart &&
             cart?.cartList?.map((item, ind) => {
               return (
                 <Box key={ind} sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography>{item}</Typography>
-                  <Checkbox color="success" value={item} />
+                  <Typography className={ischecked ? "compelet" : ""}>
+                    {item}
+                  </Typography>
+                  <Checkbox
+                    color="success"
+                    value={item}
+                    onClick={(e) => {
+                      handleToggle(e);
+                    }}
+                  />
                   <Button
                     sx={{ color: "red" }}
                     onClick={() => {

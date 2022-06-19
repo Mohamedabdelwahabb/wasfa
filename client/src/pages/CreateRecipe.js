@@ -51,7 +51,7 @@ export default function CreateRecipe() {
       ingredients,
       instructions,
     };
-    const recipeRef = collection(db, "recipes");
+    const recipeRef = collection(db, "favorites");
 
     addDoc(recipeRef, data);
     setFormData({
@@ -153,7 +153,6 @@ export default function CreateRecipe() {
         <select
           onChange={(e) => {
             setFormData({ ...formData, category: e.target.value });
-          
           }}
         >
           {categoryOptions}
