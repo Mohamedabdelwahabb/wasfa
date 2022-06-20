@@ -37,7 +37,15 @@ export default function BackDrop({ title, setTitle }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <Button onClick={handleClose}>cancel</Button>
+          <Button onClick={handleClose}>save</Button>
+          <Button
+            onClick={() => {
+              setTitle("");
+              handleClose();
+            }}
+          >
+            cancel
+          </Button>
         </Box>
       </Backdrop>
     </div>

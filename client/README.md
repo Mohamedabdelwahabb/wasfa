@@ -1,3 +1,55 @@
+# Wasfa
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- React
+  -mui
+- JSX
+- Firebase/Firestore
+- npm
+- git
+- GitHub
+
+## Use case
+
+- Overview page to browse through available recipes.
+- Detail page for every specific recipe.
+- Create, Update and Delete Recipes.
+- Step-by-step instructions in a clearly distinguishable way.
+- Add Ingredient list
+- Searching & Filtering
+- If the app is opened in the morning, you can suggest a few breakfast ideas.
+- Dynamically adjust the ingredients based on the number of people
+- From food prepping -> get one list of ingredients as a shopping list
+- Rating
+- Use voice recognition to add to your shopping list
+- Add Images
+- Add instructional videos
+
+## Setup/Installation Requirements
+
+- Open the terminal on your desktop
+- Once in the terminal, use it to navigate to your desktop folder
+- Once inside your desktop folder, use the command ``
+- After cloning the project, navigate into it using the command `cd wasfa/client`
+- Use the command `git remote` to confirm the creation of the new local repository
+- Install project dependencies by running the command `npm install`
+- If you receive errors in the terminal, try running `npm install` again, sometimes npm can be finicky
+- Then run the command `npm run start` to start the project server and view the application (use ctrl + c to exit the server in the terminal)
+- Open the project with the code editor of your choice
+
+## Future Plans
+
+- Implement OAuth for easy account creation and login
+- Add more search filters as well as a search bar
+
+## Known Bugs
+
+- Currently users cannot directly edit their ingredients. If you need to edit an ingredient, unfortunatley you will need to delete the recipe and start over.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
