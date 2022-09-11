@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 //
-import { Alert, Box, Typography } from "@mui/material";
+import { Alert, Box, colors, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 //
 import SuggestedMeal from "./SuggestedMeal";
@@ -8,10 +8,8 @@ import SuggestedMeal from "./SuggestedMeal";
 const SuggestionList = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography variant="h4" gutterBottom component="div">
-        <Alert severity="info">
-          it is time for breakfast — <strong>check our meals !</strong>
-        </Alert>
+      <Typography sx={{ fontZise: "18px", fontWeight: 700 }}>
+        Our popular recipes
       </Typography>
       <SuggestedMeal />
     </Box>

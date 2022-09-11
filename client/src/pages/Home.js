@@ -18,7 +18,6 @@ const Home = () => {
   const [type, setType] = useState("all");
   const [query, setQuery] = useState("");
   const [searchTerm] = useState(["title", "category"]);
-
   const [recipes, loading] = useCollection("recipes");
   const changeFilter = (newFilter) => {
     setType(newFilter);
@@ -60,11 +59,13 @@ const Home = () => {
       });
     });
   };
+  //!data = filterRecipes or = recipes
   const filteredItems = getFilteredItems(
     query,
     filterRecipes.length ? filterRecipes : recipes
   );
   const updateQuery = (e) => setQuery(e?.target?.value);
+  //!settime out to delay
   const debouncedOnChange = debounce(updateQuery, 3000);
 
   return (

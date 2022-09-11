@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 //!
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../util/firebase.config";
+import { db, dltDoceById } from "../../util/firebase.config";
 //!
-import { Checkbox, Typography } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Typography } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,7 +12,8 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import Favorite from "@mui/icons-material/Favorite";
+
+import { useCollection } from "../../hooks/useCollection";
 //!
 export default function RecipeCard({
   title,
@@ -21,6 +22,10 @@ export default function RecipeCard({
   cookTime,
   description,
 }) {
+  const [favorites] = useCollection("favorites");
+  const favId = favorites.map(({ id }) => id);
+
+  //! to save in fav collection
   const docData = {
     title: title,
     image: image,
@@ -46,15 +51,23 @@ export default function RecipeCard({
       <Typography>cookTime: {cookTime}min </Typography>
       <CardContent varient="body2">
         <CardActions>
-          <IconButton
-            aria-label="add to favorites"
-            onClick={() => addToFavorite(id)}
-          >
-            <Checkbox
-              icon={<FavoriteBorderIcon />}
-              checkedIcon={<Favorite sx={{ color: "red" }} />}
-            />
-          </IconButton>
+          {favId && favId.indexOf(id) > -1 ? (
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() => {
+                dltDoceById(id, "favorites");
+              }}
+            >
+              <FavoriteIcon sx={{ color: "red" }} />
+            </IconButton>
+          ) : (
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() => addToFavorite(id)}
+            >
+              <FavoriteIcon />
+            </IconButton>
+          )}
         </CardActions>
       </CardContent>
     </Card>

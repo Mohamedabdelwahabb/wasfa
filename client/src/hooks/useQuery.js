@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const useQuery = (q) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  //!snaphot obj have docs
   useEffect(() => {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const collectionData = snapshot.docs.map((doc) => {

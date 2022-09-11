@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //!
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../util/firebase.config";
@@ -14,35 +14,43 @@ const ImgUpload = ({ setImageUrl, setProgress }) => {
     setImage(e.target.files[0]);
   };
 
-  const upload = () => {
-    const storageRef = ref(storage, `/images/${image.name}`);
+  (function () {
+    // Create a reference
+    console.log(image);
+    if (image === "") {
+      return;
+    } else {
+      const storageRef = ref(storage, `/images/${image.name}`);
+      const uploadImage = uploadBytesResumable(storageRef, image);
+      uploadImage.on(
+        "state_changed",
+        (snapshot) => {
+          const progressPercent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progressPercent);
+          setImage("");
+        },
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          getDownloadURL(uploadImage.snapshot.ref)
+            .then((url) => {
+              setImageUrl(url);
+              console.log(url, "itt");
+            })
+            .then(() => {
+              setProgress(0);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      );
+    }
+  })();
 
-    const uploadImage = uploadBytesResumable(storageRef, image);
-    uploadImage.on(
-      "state_changed",
-      (snapshot) => {
-        const progressPercent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progressPercent);
-      },
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        getDownloadURL(uploadImage.snapshot.ref)
-          .then((url) => {
-            setImageUrl(url);
-          })
-          .then(() => {
-            setProgress(0);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    );
-  };
   return (
     <Box>
       <Input
@@ -54,7 +62,7 @@ const ImgUpload = ({ setImageUrl, setProgress }) => {
         }}
       />
 
-      <ButtonA onClick={upload}> upload</ButtonA>
+      {/* <ButtonA onClick={upload}> upload</ButtonA> */}
     </Box>
   );
 };

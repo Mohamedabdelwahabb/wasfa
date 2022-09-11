@@ -1,40 +1,36 @@
 .hero {
-  display: flex;
-  margin: 2em 2em;
+  width: 100%;
 }
 .hero-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .hero-container img {
-  display: flex;
-  width: 293px;
-  height: 292px;
+  width: 800px;
+  height: 500px;
 }
 .text {
   display: flex;
   flex-direction: column;
+  font-weight: 700;
   gap: 1em;
 }
 .hero-container p {
-  font-weight: 500;
   font-size: 2em;
   line-height: 1.4;
-  color: #117799;
 }
 .hero-container span {
   font-size: 18px;
   letter-spacing: 0.04em;
-  color: #117799;
 }
 .hero-container button {
   width: 163px;
   height: 50px;
-  left: 71px;
-  top: 556px;
   border: none;
-  background: #5cac0e;
-  border-radius: 15px;
+  background-color: hsla(179, 62%, 43%, 1);
+  border-radius: 35px;
   color: white;
+  font-size: 20px;
 }

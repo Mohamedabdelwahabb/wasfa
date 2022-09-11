@@ -44,6 +44,7 @@ export default function CreateRecipe() {
       alert("Please fill title");
       return;
     }
+
     const data = {
       ...formData,
       image: imageUrl,

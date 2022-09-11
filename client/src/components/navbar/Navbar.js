@@ -4,7 +4,11 @@ import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 //!
 import classes from "./navbar.css";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Button } from "@mui/material";
 //!
 const NavBar = () => {
@@ -62,16 +66,28 @@ const NavBar = () => {
                 <LoginIcon />
               </NavLink>
             </li> */}
-            <li className="nav-item">
-              <Button
-                sx={{ color: "white" }}
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              >
-                <DarkModeOutlinedIcon />
-              </Button>
-            </li>
           </ul>
         </nav>
+        <div className="icon">
+          <span className="nav-item">
+            <Button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            >
+              {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+            </Button>
+          </span>
+
+          <span className="nav-item">
+            <Button>
+              <ShoppingCartOutlinedIcon />
+            </Button>
+          </span>
+          <span className="nav-item">
+            <Button>
+              <PermIdentityIcon />
+            </Button>
+          </span>
+        </div>
       </div>
     </header>
   );
